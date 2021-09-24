@@ -1,5 +1,5 @@
 0. The number of digits in a number system, the largest digit would be x-1, where x is the base number.
-1. Binary uses the base-2 number system. This is important because it simplifies choices into only two options.
+1. Binary uses the base-2 number system. This is important because it simplifies choices into only two options, increasing efficiency in computing.
 2. 0. Count how many digits are in the binary number. Let x represent the number of digits.
     1. Label the digits from left to right, starting with 2^(x-1) and descend until you reach 2^0 and no digits are left.
     2. Add the corresponding label for each digit that is 1. Ignore the labels for digits that are 0.
