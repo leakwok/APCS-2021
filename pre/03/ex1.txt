@@ -1,0 +1,14 @@
+1. ping() prints a "." when invoked and baffle() prints "wug" and ".". The output would be
+	No, I
+	wug
+	.
+	You wugga
+	wug
+	.
+	I
+	wug
+	.
+
+2. main() --> zoop () --> baffle() --> ping()
+
+3. It would create a never ending loop since ping() is also invoked at the end of baffle().
