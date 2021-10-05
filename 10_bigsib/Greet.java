@@ -17,7 +17,7 @@ public class Greet {
 /* 
 
 DISCOVERIES
-	you can call a method from a different file
+	you can call a method from a different class in a different file
 
 
 UNRESOLVED QUESTIONS

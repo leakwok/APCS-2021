@@ -19,7 +19,7 @@ public class BigSib {
 /* 
 
 DISCOVERIES
-	you can call a method from a different file
+	you can use return to return an object instead of printing it
 
 
 UNRESOLVED QUESTIONS
