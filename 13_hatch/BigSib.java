@@ -22,7 +22,7 @@ public class BigSib {
     // constructor
     public BigSib(String helloMsg){
         // same function as richard.setHelloMsg("Word up")
-            // want to change the welcome messagew
+            // want to change the welcome message
         this.helloMsg = helloMsg;
 
     }
