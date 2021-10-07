@@ -1,5 +1,5 @@
 /*
-Lea Kwok, Salaj Rijal (Gunter, George)
+Linuxers: Lea Kwok, Salaj Rijal (Gunter, George)
 APCS
 HW13 - Adding a Constructor
 
@@ -22,8 +22,9 @@ public class Greet {
   public static void main( String[] args ) {
     String greeting;
 
-    BigSib richard = new BigSib();
-    richard.setHelloMsg("Word up");
+    BigSib richard = new BigSib("Word up");
+    // richard.BigSib("Word up");
+    // richard.setHelloMsg("Word up");
 
     greeting = richard.greet("freshman");
     System.out.println(greeting);
