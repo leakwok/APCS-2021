@@ -8,13 +8,10 @@ HW13 - Adding a Constructor
 /* 
 
 DISCO
-	you can name a variable outside of the method as long as it's in the class (thanks David)
-    you must name a global variable because you can't call a variable local to a method
+	you can put objects in a constructor
 
 QCC
-	what is richard?
-    what is the purpose of richard?
-    do i even need a BigSib() even if it's in Greet.java?
+	was I supposed to put an object in the constructor?
 
 */
 
