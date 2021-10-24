@@ -1,7 +1,14 @@
 /***
- *  class Coin
- *  by Clyde "Thluffy" Sinclair
- *  SKELETON
+ Team Nissan Lamp: Joshua Gao, Lea Kowk
+ APCS
+ HW23 -- What Does Equality Look Like?
+ 2021-10-24
+ time spent: 0.7
+
+ DISCO:
+  n/a
+ QCC:
+  how can we condense if statements? 
  ***/
 
 public class Coin {
@@ -38,7 +45,14 @@ public class Coin {
       postcond:
   ***/
   public Coin( String s ) {
-	name = s;
+    if (s == "penny" || s == "dime" || s == "nickel" || s == "quarter" || s == "dollar" || s == "half-dollar") { // from David Chan's code
+      name = s;
+      upFace = "heads";
+    } else if (s == "Penny" || s == "Dime" || s == "Nickel" || s == "Quarter" || s == "Dollar" || s == "Half-dollar"){
+      name = s;
+      upFace = "heads";
+    } 
+    
   }
   
 /***
@@ -56,8 +70,11 @@ public class Coin {
    * precond: n/a
    * postcond: Return String comprised of name and current face
    ***/
-  public String () {
-
+  public String toString(String possession, String ) {
+    // "mine: " + mine
+    // mine: name -- upFace
+    possession = name + " -- " + upFace;
+    return 
   }
 
 }//end class
