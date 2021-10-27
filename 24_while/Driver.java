@@ -1,4 +1,17 @@
 /***
+ Team Nissan Lamp: Joshua Gao, Lea Kowk
+ APCS
+ HW23 -- Get It While You Can
+ 2021-10-25
+ time spent: 0.6
+
+ DISCO:
+  n/a
+ QCC:
+  n/a 
+ ***/
+
+/***
     driver for class Coin
 
     ~~~ SUGGESTED WORKFLOW: ~~~

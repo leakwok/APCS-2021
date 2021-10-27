@@ -1,14 +1,14 @@
 /***
  Team Nissan Lamp: Joshua Gao, Lea Kowk
  APCS
- HW23 -- What Does Equality Look Like?
- 2021-10-24
- time spent: 0.7
+ HW23 -- Get It While You Can
+ 2021-10-25
+ time spent: 0.6
 
  DISCO:
   n/a
  QCC:
-  how can we condense if statements? 
+  n/a 
  ***/
 
 import java.lang.Math;
