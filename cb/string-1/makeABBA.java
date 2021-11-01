@@ -1,3 +1,11 @@
+/*
+Lea Kwok
+APCS
+HW28: PPMP - CodingBat String Problems
+2021-11-01
+time spent: 00.7
+*/
+
 /* Given two strings, a and b, return the result of putting them together in the order abba, e.g. "Hi" and "Bye" returns "HiByeByeHi".
 */
 

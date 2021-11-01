@@ -1,3 +1,11 @@
+/*
+Lea Kwok
+APCS
+HW28: PPMP - CodingBat String Problems
+2021-11-01
+time spent: 00.7
+*/
+
 /* Given a string name, e.g. "Bob", return a greeting of the form "Hello Bob!".
 */
 
