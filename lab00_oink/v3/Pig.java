@@ -1,9 +1,9 @@
 /***
  * Lenovo: Lea Kwok, Xinqing Lin, Raven (Ruiwen) Tang
  * APCS
- * HW31 -- deploying linear search on Strings, using helper methods
- * 2021-11-08
- * time spent: .5hrs
+ * L00: Etterbay Odingcay Oughthray Ollaborationcay
+ * 2021-11-09
+ * time spent: 2.0hrs
  *
  * class Pig
  * a Pig Latin translator
@@ -31,17 +31,31 @@ DISCO:
 	- translator can handle punctuation (to a limited extent)
 - y is a vowel when appropriate. when it is the first letter of a word, it is a consonant, and when it is in the middle of a word, it is a vowel.
 - in the firstVowel method, we need to check hasAVowel first, because if the inputted string does not have any vowels, allVowels(w) will return an empty string, and attempting to find a substring of this empty string would create an index out of range error.
+- We can use whole files as input. From Piazza post 249, we learned about what the direction of the arrow does.
+- Indenting is important. We were confused because there were many if/else statements nested inside each other, and editing the wrong one lead to errors.
+- (From our Piazza comment on post 250) We're Team Lenovo of pd7. While we didn't run into the same issue, we had problems pushing to our work repo because of unmerged files. Something that should work when git issues happen is cloning your work repository onto your local machine again under a separate name. Then, you can use this new version for the future and refer back to the old local copy if you ever need something.
 
 QCC:
-- to do for next time: 
-	- incorporate Scanner functionality
-	- deal with capital vowels (not considered vowels as of now)
-	- polish capitalization, figure out specific cases
-	- deal with spaces/sentences
-	- deal with y 
-	- more irregular cases: punctuation in the middle of a word (ex: hyphenation), capitalization in the middle of a word
-- for a more efficient way to do hasA without indexOf, we were thinking of using a recursive approach, with the base case being a w with length 1 and the recursive case calling hasA for a substring of w. however, we're not sure if this is more "effective."
+- Properly indenting code can help make the code more readable and more easily traced.
+- We set a time limit for ourselves to work on one issue, and then move onto the next after. It's helpful for keeping ourselves on track and aware of how much time we're spending on this.
+- How can we improve the code for engToPig() so that it's cleaner and more efficient?
+- We rearranged the to-do list priority so that we could incorporate Scanner functionability after our translator had more functions.
+- Could we use helper methods in engToPig()? 
+
+HOW WE UTILIZED SCANNER DEMO (v3):
+- We augmented the DemoScanner.java in our main method to use engToPig() on stream input.
+
+WHAT CAUSES THE RUNTIME ERROR IN THE SCANNER DEMO:
+- The while loop tries to echo back the input, but it outputs 2 for each input. It will output more than it inputs, and soon run out of elements to reference.
+
+NEW IN v3:
+- incorporate Scanner functionality
+- deal with capital vowels (not considered vowels as of now) and words starting with capitals
+- deal with punctuation at the end of a word
+- deal with y (both capital and lowercase and when it should be treated as a vowel)
 ***/
+
+import java.util.Scanner;
 
 public class Pig {
 
@@ -172,21 +186,55 @@ public class Pig {
     **/
   public static String engToPig( String w ) {
 
-    String ans = "";
+    String ans = "";        
+    String punc = w.substring(w.length()-1);
 
-    if ( beginsWithVowel(w) ){
-      ans = w + "way";
+    if ( beginsWithVowel(w) && !((w.substring(0,1).toLowerCase()).equals("y")) ){
+      if(isPunc(punc)){
+         ans = w.substring(0,w.length()-1) + "way" + punc;
+      }
+      else {
+          
+        ans = w + "way";
+      }
     }
-    else { 
-      if( beginsWithUpper(w)){
-	int vPos = w.indexOf( firstVowel(w) );
-	ans = w.substring(vPos,vPos+1).toUpperCase() + (w.substring(vPos+1) + w.substring(0, vPos) + "ay").toLowerCase();
+    else {
+     
+      if(isPunc(punc)){
+          if( beginsWithUpper(w)){
+            int vPos = w.indexOf( firstVowel(w) );
+            if((w.substring(0, 1).toLowerCase()).equals("y")){
+                vPos = w.indexOf(firstVowel(w.substring(w.indexOf("Y")+1)));
+            }
+            ans = w.substring(vPos,vPos+1).toUpperCase() + (w.substring(vPos+1,w.length()-1) + w.substring(0, vPos) + "ay" + punc).toLowerCase();
       }
       else{
-      int vPos = w.indexOf( firstVowel(w) );
-      ans = w.substring(vPos) + w.substring(0,vPos) + "ay";
+            
+            int vPos = w.indexOf( firstVowel(w) );
+            if((w.substring(0, 1).toLowerCase()).equals("y")){
+                vPos = w.indexOf(firstVowel(w.substring(w.indexOf("y")+1)));
+            }
+            ans = w.substring(vPos,w.length()-1) + w.substring(0,vPos) + "ay" + punc;
+        }
       }
+      else {
+          if( beginsWithUpper(w)){
+            int vPos = w.indexOf( firstVowel(w) );
+            if((w.substring(0, 1).toLowerCase()).equals("y")){
+                vPos = w.indexOf(firstVowel(w.substring(w.indexOf("Y")+1)));
+            }
+            ans = w.substring(vPos,vPos+1).toUpperCase() + (w.substring(vPos+1) + w.substring(0, vPos) + "ay").toLowerCase();
+            }
+            else{
+                int vPos = w.indexOf( firstVowel(w) );
+                if((w.substring(0, 1).toLowerCase()).equals("y")){
+                        vPos = w.indexOf(firstVowel(w.substring(w.indexOf("y")+1)));
+                }
+                ans = w.substring(vPos) + w.substring(0,vPos) + "ay";
+                }
+        }    
     }
+
 
     return ans;
   }
@@ -215,8 +263,8 @@ public class Pig {
     /*=====================================
       boolean hasPunc(String) -- tells whether a String contains punctuation
       pre:  w != null
-      post: hasPunc(“cat.”) -> true
-            hasPunc(“cat”) -> false
+      post: hasPunc("cat.") -> true
+            hasPunc("cat") -> false
       =====================================*/
     public static boolean hasPunc( String w ) {
 	for(int i = 0; i < w.length(); i++){
@@ -241,7 +289,7 @@ public class Pig {
 
   public static void main( String[] args ) {
 
-    for( String word : args ) {
+    /* for( String word : args ) {
       System.out.println( "allVowels \t" + allVowels(word) );
       System.out.println( "firstVowels \t" + firstVowel(word) );
       System.out.println( "countVowels \t" + countVowels(word) );
@@ -249,15 +297,21 @@ public class Pig {
       System.out.println( "hasPunc \t" + hasPunc(word) );
       System.out.println( "beginsWithUpper \t" + beginsWithUpper(word));
       System.out.println( "---------------------" );
-    }
-      System.out.println(isPunc(":"));
+    } */
+    //instantiate a Scanner with STDIN as its bytestream
+    Scanner sc = new Scanner( System.in );
+        while( sc.hasNext() ) {
+            System.out.println( engToPig(sc.next()) );
+            }
+
+      /* System.out.println(isPunc(":"));
       System.out.println("should be true");
       System.out.println(isPunc("I"));
       System.out.println("should be false");
       System.out.println(isUpperCase("A"));
       System.out.println("should be true");
       System.out.println(isUpperCase("b"));
-      System.out.println("should be false");
+      System.out.println("should be false"); */
   }//end main()
 
 }//end class Pig
