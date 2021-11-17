@@ -1,4 +1,10 @@
-
+/* 
+Un-up Town Leopard Rock: Lea Kwok, Raven (Ruiwen) Tang
+APCS
+HW37 -- PPMP[] -- CodingBat Array-1
+2021-11-16 
+time spent: 00.7 hours
+*/
 
 public class array1{
 	
@@ -20,9 +26,8 @@ public class array1{
 	
 	// Return an int array length 3 containing the first 3 digits of pi, {3, 1, 4}.
 	public static int[] makePi() {
-		int[] piArr = {3, 1, 4};
-		return piArr;
-		  
+		//int[] piArr = {3, 1, 4};
+		return new int[] {3, 1, 4};	 
 	}
 	
 	public static void main(String[] args){
@@ -43,7 +48,9 @@ public class array1{
 		System.out.println(sameFirstLast(arr5)); //expected: true
 		
 		System.out.println("\nmakePi tests:");
-		System.out.println(makePi());
+		for(int i : makePi()){
+			System.out.println(i);
+		}
 	}
 
 
