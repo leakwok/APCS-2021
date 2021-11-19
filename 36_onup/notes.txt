@@ -1,0 +1,74 @@
+Lea Kwok
+APCS
+HW36 -- All Quacked Up - Appendix D Debugging of ThinkJava
+2021-11-19
+time spent: 00.7 hour
+
+Types of Errors:
+    - compile-time errors: syntax is wrong
+    - run-time errors: something goes wrong while program runs
+    - logic errors: program does wrong thing
+
+Compile-Time Errors:
+    - compiler has error messages
+        - only first error message is reliable
+        - fix one error at a time
+    - weird compiler message
+        - read message and go to location of error
+            - error is probably prior to location
+            - if error is not found, look at entire program and check for syntax errors
+    - program does not compile
+        - check to make sure it's the right program, not a different copy of the same program
+        - put obvious syntax error -> compile
+            - if error doesn't show up, set up of development environment is wrong
+        - if program is the right one, debug by bisection
+            - make backup of file
+            - delete half of code -> compile
+                - compiles: error is in deleted code, repeat by replacing code with deleted portion
+                - doesn't compile: error is in code left, delete half and repeat
+    - did what the compiler said, doesn't work
+        - don't always follow what compiler suggests, solution may be simpler
+
+Run-Time Errors:
+    - program hangs (stopping and not doing anything)
+        - if it's a specific loop, add print statements indicating beginning and end of loop
+            - if second message is not printed, it is an infinite loop
+                - add print statements displaying values of variables and value of boolean of loop
+                    - 3 lines should output for every loop (if there are 2 variables)
+                        - last time should print false for conditional
+        - infinte recursion will make loop run for a little, then output StackOverflowError
+            - check for a base case in the method
+            - if there isn't a base case, but program isn't reaching it, add print statement at beginning of method for parameters
+        - check flow of execution
+            - add print statements to beginning of methods to trace
+    - geting an exception
+        - NullPointerException: accessing instance variable or invoking method on object that is Null
+        - ArrayIndexOutOfBoundsException: index of array is negative or greater than array.length-1
+        - StackOverflowError
+        - FIleNotFoundException: Java can't find the file it was looking for
+        - ArithmeticException: arithmetic went wrong
+    - too many outputs because of print statements
+        - simplify output: remove or combine print statements
+        - simplify program: scale down problem, clean up code
+
+Logic Errors:
+    - program doesn't work
+        - hypothesize what the program is doing vs what it's supposed to do
+        - create a mental model by breaking down the program (usually into classes and methods)
+    - long expression doesn't work
+        - break down using temp variables and assigning them to expressions in the original expression
+        - check the order of operations
+    - method not returning expected output
+        - rewrite long expression with temp variables
+            - return values of temp variables before returning main expression to check
+    - print statement not doing anything
+        - using print (instead of println) will store output but not display it until next newline
+            - change print -> println
+    - stuck
+        - go away from computer for a bit to calm down
+            - when calm, think about possible errors in program
+        - ask someone to look at it
+            - be able to describe the program and problem well + tried solutions
+            - basically the rubber ducking method
+    - found bug
+        - take time to understand algorithm and how to prevent bug in future
