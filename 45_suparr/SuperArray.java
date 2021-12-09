@@ -1,32 +1,24 @@
 // Un-upTown Leopard Rock: Lea Kwok, Raven (Ruiwen) Tang
 // APCS pd7
-// HW44 -- Array of Grade 316
-// 2021-12-07
-// time spent: 01.2 hours
+// HW45 -- Array of Titanium
+// 2021-12-08
+// time spent: 01.1 hours
 /*
 DISCO:
-- _data is the "underlying array" of SuperArray, according to a comment in the provided test cases. We need to check the length of the underlying array rather than _size for methods like expand() to make sure the size of _data has expanded, not the size of SuperArray just yet.
-- It's helpful to write algorithm summary comments before methods that would benefit from them.
-- After expanding a SuperArray, there should be no visual differences in the printed out SuperArray or in the _size of the SuperArray, even though the length of the underlying array is being updated.
-- A possible way to "future proof" our methods is to consider what happens when a user attempts to remove or add an element past the index _size. We addressed the remove situation by checking if index >= _size and printing a message to the user without altering any values. We addressed the add situation by checking if index >= _size and invoking set() for the desired index and value. Doing so ensures that _size is properly updated to cover up to the recently added element rather than just being incremented by 1.
+- SuperArray cannot override the return type given in the interface.
+- The headers for the methods have to be the same in the interface and the implementation. For example, the add() method returned a boolean in the List Interface, but we wanted add() to be void in SuperArray. So, we needed to match the return types for it to compile.
+- Interface implementation allows you to require any class that implements the Interface to have all of the methods specified in the Interface. If you initialize an object with object type SuperArray() and variable ListInt, ListInt specifies what methods you may use, and SuperArray() specifies the implementation of the methods. However, the object would still be able to perform methods like toString() because of inheritance. Instance variables of SuperArray() cannot be accessed.
 
 QCC:
-- We started off with the skeleton code from the library for v1. However, we changed the for loop in expand() to iterate up to _size instead of _data.length. We felt that it wasn't necessary to copy over elements after _size in the previous _data to conserve memory used. Is there any advantage to using _data.length instead of _size?
-- We ran into a problem with set(): the SuperArray would be printed as an empty [] even though the length of the underlying array was being updated. We realized that this problem came from not updating _size in the skeleton set() method. We updated _size by checking if an element was being set at an index past _size-1 (which is the last element of the previous SuperArray capacity).
-- Our algorithm for a remove() method that takes no parameters and pops off the end of the SuperArray: simply let _size take the value of _size-1. We thought of _size as a curtain or sliding airplane window blind that limits how much of the underlying array a user can see when using a SuperArray. By decreasing _size by 1, the user is no longer allowed to see the last element, and the _size has been correctly updated as well.
-*/
+- Can an interface have instance variables? Is there a way to access these variables in the implementation if not?
+- We received these error messages when our return types did not match for a method in ListInt and SuperArray.
+  error: SuperArray is not abstract and does not override abstract method add(int) in ListInt
+  error: add(int) in SuperArray cannot implement add(int) in ListInt
+  return type void is not compatible with boolean
+- We got this message after trying to access an instance variable and method of SuperArray through a ListInt object.
+  error: cannot find symbol 
 
-/***************************
- * class SuperArray version 2.0
- * (SKELETON)
- * Wrapper class for array. Facilitates
- * resizing
- * expansion
- * read/write capability on elements
- * adding an element to end of array
- * adding an element at specified index
- * removing an element at specified index
- ***************************/
+*/
 
 public class SuperArray implements ListInt
 {
@@ -91,7 +83,7 @@ public class SuperArray implements ListInt
   /* algo:
     create a holder variable for the element at the index
     change the element at the index to newVal
-    if the index is out of bounds of SuperArray, update size to index+1
+    if the index is out of bounds of SuperArray, print error message
     return the old value at index, which was stored in the temporary variable
   */
   public int set( int index, int newVal )
@@ -99,7 +91,7 @@ public class SuperArray implements ListInt
     int temp = _data[index];
     _data[index] = newVal;
     if(index > _size-1){
-      _size = index+1;
+      System.out.println("Attempted to set value of out of bounds element.");
     }
     return temp;
   }
@@ -111,7 +103,7 @@ public class SuperArray implements ListInt
     set the element at index size to newVal
     increment size by 1
   */
-  public void add( int newVal )
+  public boolean add( int newVal )
   {
     /* YOUR IMPLEMENTATION HERE */
     if(_size == _data.length){
@@ -119,23 +111,24 @@ public class SuperArray implements ListInt
     }
     _data[_size] = newVal;
     _size += 1;
+    return true;
   }
 
 
   //inserts an item at index
   /* algo:
-    if _data doesn't have space for another element or index is out of bounds of the underlying array, expand()
-    if index is out of bounds of the SuperArray (meaning it's >= _size, not necessarily >= _data.length), use the set() method to ensure that _size is updated appropriately and not just incremented by 1
+    if _data doesn't have space for another element, expand()
+    if index is out of bounds of the SuperArray (meaning it's >= _size, not necessarily >= _data.length), print error message
     otherwise, iterate from the rightmost meaningful element to the element at the desired index, shifting each element to the right, set the element at index to newVal, and increment size by 1
   */
   public void add( int index, int newVal )
   {
     /* YOUR IMPLEMENTATION HERE */
-    if(_size == _data.length || index >= _data.length){
+    if(_size == _data.length ){
 	     expand();
     }
     if(index >= _size){
-      set(index, newVal);
+      System.out.println("Attempted to add index out of bounds element.");
     }
     else{
       for(int i = _size-1; i > index-1; i--){
@@ -175,31 +168,21 @@ public class SuperArray implements ListInt
     return _size;
   }
 
-
-
   //main method for testing
   public static void main( String[] args )
-  {
-      SuperArray curtis = new SuperArray();
+  {  
+      ListInt curtis = new SuperArray();
       System.out.println( "Printing empty SuperArray curtis..." );
       System.out.println( curtis );
 
-      for( int i = 0; i < curtis._data.length; i++ ) {
-          curtis.set( i, i * 2 );
+      for( int i = 0; i < 10; i++ ) {
+          curtis.add( i * 2 );
       }
 
       System.out.println("Printing populated SuperArray curtis...");
       System.out.println(curtis);
 
-      for( int i = 0; i < 3; i++ ) {
-          curtis.expand();
-          System.out.println("Printing expanded SuperArray curtis...");
-          System.out.println(curtis);
-          System.out.println("new length of underlying array: "
-      + curtis._data.length );
-      }
-
-      SuperArray mayfield = new SuperArray();
+      ListInt mayfield = new SuperArray();
       System.out.println("Printing empty SuperArray mayfield...");
       System.out.println(mayfield);
 
@@ -236,7 +219,7 @@ public class SuperArray implements ListInt
       System.out.println(mayfield);
       /*~~~~~~~~move~me~down~~~~~~~~~~~~~~V~~~~~~~~
       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|~~~~~~~~*/
-  }//end main()
 
+  }//end main()
 
 }//end class
