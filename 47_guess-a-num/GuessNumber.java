@@ -2,7 +2,7 @@
 // APCS pd7
 // HW47 - - Guess Again
 // 2021-12-14
-// time spent: 01.1 hours
+// time spent: 00.5 hours
 
 /* 
 DISCO:
