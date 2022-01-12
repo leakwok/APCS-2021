@@ -1,29 +1,40 @@
-// Clyde "Thluffy" Sinclair
-// APCS pd0
-// HW53 -- implementing insertion sort
-// 2022-01-06r
-// time spent:  hrs
+/* 
+Un-upTown Leopard Rock: Lea Kwok, Raven (Ruiwen) Tang
+APCS pd7
+HW53 -- Poker Face
+2022-01-06
+time spent: 00.5 hour
+
+Collaborated with TLP in class
+*/
 
 /******************************
  * class InsertionSort -- implements InsertionSort algorithm
  *
  * ALGO:
+   Keep track of a partition, which represents the index of what the sorted part goes up to.
+   For elements up to and including the partiton, start from the right and compare the element with its left neighbor.
+   If the left neighbor is greater than the element, then swap until the element of interest is greater than its left neighbor.
+   Continue for the rest of the ArrayList until the partition reaches the number of elements in the ArrayList.
  * 
  * DISCO
+   We were able to complete this homework much faster because we spent a good amount of time tracing and planning in class. The previous homeworks also helped.
+   We noticed similarities between different types of sorts. They all do n-1 passes, and in each pass, they iterate through the ArrayList again to sort elements.
+   Having a partition is helpful to keep track of up to which elements we have already sorted through.
  *
  * QCC
  * q0: How many passes to sort n elements?
- * a0: 
+ * a0: n-1 passes
  * q1: What do you know after pass p?
- * a1: 
+ * a1: The first p+1 elements are sorted up to the partition, but they are not necessarily in their final positions
  * q2: How will you know when sorted?
- * a2:
- * q3: What constitues a pass?
- * a3:
+ * a2: When n-1 passes have been made and the partition is n
+ * q3: What constitutes a pass?
+ * a3: A pass constitutes walking down the leftmost unsorted element to its position in the sorted portion
  * q4: What must you track?
- * a4: 
+ * a4: Partition
+   Why is there a second coco print statement at the end of the non void tests? Is that intentional?
  ******************************/
-
 
 import java.util.ArrayList;
 
@@ -55,7 +66,6 @@ public class InsertionSort
   }
   //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-
   // VOID version of InsertionSort
   // Rearranges elements of input ArrayList
   // postcondition: data's elements sorted in ascending order
@@ -68,21 +78,20 @@ public class InsertionSort
       System.out.println( data );
 
       //traverse sorted region from right to left
-      for( int j = partition; j > -1 ) {
+      for( int i = partition; i > 0; i-- ) {
 
         // "walk" the current item to where it belongs
         // by swapping adjacent items
-        if (  ) {
+        if ( data.get(i-1).compareTo(data.get(i)) > 0 ) {
 
           System.out.println( "swap indices "+(i-1)+" & "+i+"..." ); //diag
-          
+          data.set(i-1, data.set( i, data.get(i-1) ) );
         }
         else
           break;
       }
     }
   }//end insertionSortV
-
 
   // ArrayList-returning insertionSort
   // postcondition: order of input ArrayList's elements unchanged
@@ -104,7 +113,6 @@ public class InsertionSort
     return data;
   }//end insertionSort
 
-
   public static void main( String [] args )
   {
     /*===============for VOID methods=============
@@ -125,7 +133,6 @@ public class InsertionSort
       System.out.println( "\nArrayList coco after sorting:\n" + coco );
       ============================================*/
 
-    /*==========for AL-returning methods==========
       System.out.println( "*** Testing non-void version... *** " );
       ArrayList glen = new ArrayList<Integer>();
       glen.add(7);
@@ -146,6 +153,7 @@ public class InsertionSort
       + cocoSorted );
       System.out.println( "\nArrayList coco after sorting:\n" + coco );
       System.out.println( coco );
+    /*==========for AL-returning methods==========
       ============================================*/
 
   }//end main
