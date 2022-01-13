@@ -1,3 +1,10 @@
+// Un-upTown Leopard Rock: Lea Kwok, Raven (Ruiwen) Tang
+// APCS pd7
+// HW56 -- Turing Training Wheels
+// 2022-01-12
+// time spent: 01.1 hr
+// collaborated with TDD in class
+
 /**
  * A program to carry on conversations with a human user.
  * This is the initial version that:

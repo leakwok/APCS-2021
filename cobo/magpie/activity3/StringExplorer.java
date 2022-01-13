@@ -1,3 +1,10 @@
+// Un-upTown Leopard Rock: Lea Kwok, Raven (Ruiwen) Tang
+// APCS pd7
+// HW56 -- Turing Training Wheels
+// 2022-01-12
+// time spent: 01.1 hr
+// collaborated with TDD in class
+
 /**
  * A program to allow students to try out different
  * String methods.
@@ -21,7 +28,13 @@ public class StringExplorer
 		System.out.println ("After toLowerCase(), sample = " + sample);
 
 		//  Try other methods here:
+		int notFoundPsn = sample.indexOf("slow");
+		System.out.println("sample.indexof(\"slow\") = " + notFoundPsn);
 
+		int notFoundPsn2 = sample.indexOf("watermelon", 2);
+		System.out.println("sample.indexof(\"watermelon\") = " + notFoundPsn2);
+
+		int notFoundPsn3 = sample.indexOf("quick", 10);
+		System.out.println ("sample.indexOf(\"quick\") = " + notFoundPsn3);
 	}
-
 }

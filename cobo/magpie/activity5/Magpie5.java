@@ -1,3 +1,10 @@
+// Un-upTown Leopard Rock: Lea Kwok, Raven (Ruiwen) Tang
+// APCS pd7
+// HW56 -- Turing Training Wheels
+// 2022-01-12
+// time spent: 01.1 hr
+// collaborated with TDD in class
+
 import java.util.Random;
 
 /**
@@ -284,7 +291,11 @@ public class Magpie5
 	private String [] randomResponses = {"Interesting, tell me more",
 			"Hmmm.",
 			"Do you really think so?",
-			"You don't say."
+			"You don't say.",
+			"Wow!",
+			"Yawn.",
+			"Didn't ask. Don't care.",
+			"Go away."
 	};
 	
 }

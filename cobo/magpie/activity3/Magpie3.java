@@ -1,3 +1,10 @@
+// Un-upTown Leopard Rock: Lea Kwok, Raven (Ruiwen) Tang
+// APCS pd7
+// HW56 -- Turing Training Wheels
+// 2022-01-12
+// time spent: 01.1 hr
+// collaborated with TDD in class
+
 /**
  * A program to carry on conversations with a human user.
  * This version: 
@@ -34,6 +41,10 @@ public class Magpie3
 		{
 			response = "Say something, please.";
 		}
+		else if (findKeyword(statement, "Mykolyk") >= 0)
+		{
+			response = "He sounds like a good teacher.";
+		}
 		else if (findKeyword(statement, "no") >= 0)
 		{
 			response = "Why so negative?";
@@ -44,6 +55,19 @@ public class Magpie3
 				|| findKeyword(statement, "brother") >= 0)
 		{
 			response = "Tell me more about your family.";
+		}
+		else if (findKeyword(statement, "dog") >= 0
+				|| findKeyword(statement, "cat") >= 0
+				)
+		{
+			response = "Tell me more about your pets.";
+		}
+		else if (findKeyword(statement, "hi") >= 0
+				|| findKeyword(statement, "hello") >= 0
+				|| findKeyword(statement, "hey") >= 0
+				)
+		{
+			response = "Nice to meet you.";
 		}
 		else
 		{
@@ -68,7 +92,7 @@ public class Magpie3
 	 * @return the index of the first occurrence of goal in
 	 *         statement or -1 if it's not found
 	 */
-	private int findKeyword(String statement, String goal,
+	private static int findKeyword(String statement, String goal,
 			int startPos)
 	{
 		String phrase = statement.trim().toLowerCase();
@@ -167,4 +191,39 @@ public class Magpie3
 		return response;
 	}
 
+	public static void main(String[] args){
+		System.out.println(findKeyword("She's my sister", "sister", 0));
+		/*
+		Trace:
+		Iteration		psn		before		after
+		1				9		" "			" "
+		*/
+
+		System.out.println(findKeyword("Brother Tom is helpful", "brother", 0));
+		/*
+		Trace:
+		Iteration		psn		before		after
+		1				0		" "			" "
+		*/
+
+		System.out.println(findKeyword("I can't catch wild cats.", "cat", 0));
+		/*
+		Trace:
+		Iteration		psn		before		after
+		1				8		" "			"c"
+		2				19		" "			"s"
+		3				-1		" "			"s"
+		*/
+
+		System.out.println(findKeyword("I know nothing about snow plows.", "no", 0));
+		/*
+		Trace:
+		Iteration		psn		before		after
+		1				3		"k"			"w"
+		2				7		" "			"t"
+		3				22		"s"			"w"
+		4				-1		"s"			"w"
+		*/
+
+	}
 }

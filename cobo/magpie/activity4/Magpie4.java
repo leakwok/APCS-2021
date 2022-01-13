@@ -1,3 +1,10 @@
+// Un-upTown Leopard Rock: Lea Kwok, Raven (Ruiwen) Tang
+// APCS pd7
+// HW56 -- Turing Training Wheels
+// 2022-01-12
+// time spent: 01.1 hr
+// collaborated with TDD in class
+
 /**
  * A program to carry on conversations with a human user.
  * This version:
@@ -10,6 +17,11 @@
  * @version April 2012
  *
  */
+
+/*
+When we put in "I ate you", ate is not a present tense verb, and the sentence returned ("Why do you ate me?") didn't make any sense. We could make a list of possible words to check that the response would actually make sense. (like, love, hate)
+*/ 
+
 public class Magpie4
 {
 	/**
@@ -49,19 +61,19 @@ public class Magpie4
 		}
 
 		// Responses which require transformations
-		else if (findKeyword(statement, "I want to", 0) >= 0)
+		else if (findKeyword(statement, "I want", 0) >= 0)
 		{
 			response = transformIWantToStatement(statement);
 		}
 
 		else
 		{
-			// Look for a two word (you <something> me)
+			// Look for a two word (I <something> you)
 			// pattern
-			int psn = findKeyword(statement, "you", 0);
+			int psn = findKeyword(statement, "I", 0);
 
 			if (psn >= 0
-					&& findKeyword(statement, "me", psn) >= 0)
+					&& findKeyword(statement, "you", psn) >= 0)
 			{
 				response = transformYouMeStatement(statement);
 			}
@@ -90,9 +102,9 @@ public class Magpie4
 			statement = statement.substring(0, statement
 					.length() - 1);
 		}
-		int psn = findKeyword (statement, "I want to", 0);
-		String restOfStatement = statement.substring(psn + 9).trim();
-		return "What would it mean to " + restOfStatement + "?";
+		int psn = findKeyword (statement, "I want", 0);
+		String restOfStatement = statement.substring(psn + 7).trim();
+		return "Would you really be happy if you had " + restOfStatement + "?";
 	}
 
 	
@@ -115,11 +127,11 @@ public class Magpie4
 					.length() - 1);
 		}
 		
-		int psnOfYou = findKeyword (statement, "you", 0);
-		int psnOfMe = findKeyword (statement, "me", psnOfYou + 3);
+		int psnOfYou = findKeyword (statement, "I", 0);
+		int psnOfMe = findKeyword (statement, "you", psnOfYou + 1);
 		
-		String restOfStatement = statement.substring(psnOfYou + 3, psnOfMe).trim();
-		return "What makes you think that I " + restOfStatement + " you?";
+		String restOfStatement = statement.substring(psnOfYou + 1, psnOfMe).trim();
+		return "Why do you " + restOfStatement + " me?";
 	}
 	
 	
@@ -235,5 +247,6 @@ public class Magpie4
 
 		return response;
 	}
+
 
 }
