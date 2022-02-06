@@ -1,0 +1,12 @@
+// Watermelon (Lea Kwok, Nina Jiang, Lawrence Joa)
+// APCS pd7
+// L05 -- pulling it together
+// 2022-02-06
+// time spent: 1.5 hrs
+
+DISCO:
+- We got a NullPointerException error when we compiled, and we realized that we need to initialize _frequency as a new ArrayList in the constructor in order for it to work.
+- Our histogram sometimes printed the number of stars + 1 due to a rounding error if the max of _frequency isn't divisible by longestBar.
+
+QCC:
+- How can we rework the histogram() method so we can account for the rounding errors?
