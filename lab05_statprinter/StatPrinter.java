@@ -1,7 +1,7 @@
 // Watermelon (Lea Kwok, Nina Jiang, Lawrence Joa)
 // APCS pd7
 // L05 -- pulling it together
-// 2022-02-03r
+// 2022-02-06
 // time spent: 1.5 hrs
 
 
@@ -149,13 +149,13 @@
     //*************** QUESTION 05 **************************
     //precond:  longestBar > 0
   
-    //Run time efficiency: O(n^2)
+    //Run time efficiency: O(n)
     public void printHistogram( double longestBar )
     {
-      double proportion = max(_frequency)/longestBar;
+      double proportion = longestBar/max(_frequency);
       for(int i=0; i<_frequency.size(); i++){
         System.out.print(i + " : ");
-        for(double j=_frequency.get(i); j>0.00001; j-= proportion){
+        for(double j=0; j<_frequency.get(i) * proportion; j++){
           System.out.print("*");
         }
         System.out.println();
