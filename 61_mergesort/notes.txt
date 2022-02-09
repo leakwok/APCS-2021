@@ -1,0 +1,18 @@
+Watermelon (Lea Kwok, Nina Jiang, Lawrence Joa)
+APCS pd7
+HW60: A Termite is-a Turtle, a Thinker is-a Turtle
+2022-02-07
+time spent: 0.6 hr
+
+DISCO:
+* Halving the deck and splitting up the work among several turtles is a more efficient way of sorting.
+* A sorted deck is one whose cards are first sorted in ascending numerical value, and then by suits in which diamonds is the smallest and spades is the largest.
+* A list of one element is a sorted list.
+* Two arrays are being merged and sorted when the cards are being returned from one turtle to another.
+
+QCC:
+* What happens if a turtle has three cards on hand? Or any odd number?
+* Is there an efficient way to ensure that every turtle receives at least one card and remembers which turtle the received the card(s) from?
+
+THINKER FIRMWARE:
+* Turtles will continuously split the deck and pass it to another turtle, who will do the same, until there is only one card at hand. Then the turtle will return the card in their hand to the turtle who had passed it to them, who then in turn sorts the cards they have in their hand and also passes it to the previous holder. All the cards will be returned to the original holder in a sorted fashion.
