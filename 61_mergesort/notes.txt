@@ -1,8 +1,8 @@
-Watermelon (Lea Kwok, Nina Jiang, Lawrence Joa)
-APCS pd7
-HW60: A Termite is-a Turtle, a Thinker is-a Turtle
-2022-02-07
-time spent: 0.6 hr
+Team Aloof: Brian Li, Lea Kwok; Turtles: Robert, Gunter
+APCS pd07
+HW61 -- Instructions so Simple...
+2022-02-08
+time spent: 1.0 hrs
 
 DISCO:
 * Halving the deck and splitting up the work among several turtles is a more efficient way of sorting.
