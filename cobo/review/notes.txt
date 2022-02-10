@@ -1,0 +1,18 @@
+Activity 1
+
+Question 1
+a) Method signature: public static double sentimentVal( String word )
+b) Parameter: String word, type String
+c) Return type: double
+
+Question 2
+sentimentVal("charity")   0.53
+sentimentVal("elite")   -0.36
+sentimentVal("popcorn")   0.0
+
+Question 3
+a) It will compile because sentimentVal() returns a double and the variable is of type double
+b) It will not compile because the parameter is 0.5, which is not the parameter sentimentVal() takes in, which is string
+c) It will not compile because sentimentVal() only takes in one String, not two
+
+Activity 2
