@@ -1,3 +1,11 @@
+/*
+Watermelon (Lea Kwok, Nina Jiang, Lawrence Joa)
+APCS pd7
+L06: Read/Review/Expand
+2022-02-14
+time spent: 1.5 hr
+*/
+
 import java.util.Scanner;
 import java.io.File;
 import java.util.HashMap;
@@ -37,7 +45,7 @@ public class Review {
       Scanner input = new Scanner(new File("positiveAdjectives.txt"));
       while(input.hasNextLine()){
         String temp = input.nextLine().trim();
-        System.out.println(temp);
+        //System.out.println(temp);
         posAdjectives.add(temp);
       }
       input.close();
@@ -94,6 +102,107 @@ public class Review {
     }
     catch(Exception e)
     {
+      return 0;
+    }
+  }
+
+  public static double totalSentiment(String fileName) {
+    String temp = "";
+    double totalSentiment = 0.0;
+    String test = textToString(fileName);
+    test = removePunctuation(test);
+
+    for(int i = 0; i < test.length(); i++){
+      if(test.substring(i, i + 1).equals(" ")){
+        totalSentiment += sentimentVal(temp);
+        temp = "";
+      } else {
+        temp += test.substring(i, i + 1);
+      }
+    } //end for loop
+    return totalSentiment;
+  } //end totalSentiment
+
+  public static String fakeReview(String fileName) {
+    String review = textToString(fileName);
+    String fake = "";
+
+    for(int i = 0; i < review.length() - 1; i++){
+      if(review.substring(i, i + 1).equals("*")){
+        String temp = "";
+        boolean isWord = true;
+        i++;
+
+        while(isWord){
+          temp += review.substring(i, i + 1);
+          i++;
+
+          if(review.substring(i, i + 1).equals(" ")){
+            isWord = false;
+          }
+
+        } //end while loop
+
+        temp = randomAdjective();
+        temp = removePunctuation(temp);
+        fake += temp + " ";
+      } else {
+        fake += review.substring(i, i + 1);
+      } //end if-else
+
+    } //end for loop
+    return fake;
+  } //end fakeReview
+
+
+  public static String fakeReviewStronger(String fileName) {
+    String review = textToString(fileName);
+    String fake = "";
+
+    for(int i = 0; i < review.length() - 1; i++){
+      if(review.substring(i, i + 1).equals("*")){
+        String temp = "";
+        boolean isWord = true;
+        i++;
+
+        while(isWord){
+          temp += review.substring(i, i + 1);
+          i++;
+
+          if(review.substring(i, i + 1).equals(" ")){
+            isWord = false;
+          } //end if
+
+        } //end while loop
+
+        temp = removePunctuation(temp);
+        if (sentimentVal(temp) > 0) {
+          temp = randomNegativeAdj() + " ";
+        } else if (sentimentVal(temp) < 0) {
+          temp = randomPositiveAdj() + " ";
+        } else {
+          temp = randomAdjective() + " ";
+        } //end if-else
+        fake += temp;
+      } else {
+        fake += review.substring(i, i + 1);
+      } //end first if
+    } //end for loop
+    return fake;
+  } //end fakeReview
+
+
+  public static int starRating(String fileName) {
+    double totalSentiment = totalSentiment(fileName);
+    if(totalSentiment >= 15) {
+      return 4;
+    } else if(totalSentiment >= 10) {
+      return 3;
+    } else if(totalSentiment >= 5) {
+      return 2;
+    } else if(totalSentiment >= 0) {
+      return 1;
+    } else {
       return 0;
     }
   }
@@ -163,10 +272,30 @@ public class Review {
     }
   }
 
-  public static void main(String[] args ){
-    System.out.println(sentimentVal("charity"));
-    System.out.println(sentimentVal("elite"));
-    System.out.println(sentimentVal("popcorn"));
+  public static int fakeStarRating(String fileName) {
+    double totalSentiment = totalSentiment(fileName);
+    if(totalSentiment >= 15) {
+      return 0;
+    } else if(totalSentiment >= 10) {
+      return 1;
+    } else if(totalSentiment >= 5) {
+      return 3;
+    } else if(totalSentiment >= 0) {
+      return 2;
+    } else {
+      return 4;
+    }
+  }
 
+  public static void main(String[] args) {
+    System.out.println(sentimentVal("cold"));
+    System.out.println(totalSentiment("SimpleReview.txt"));
+    System.out.println(totalSentiment("TestReview.txt"));
+
+    System.out.println(fakeReview("fakeReview.txt"));
+    System.out.println(fakeReviewStronger("fakeReview.txt"));
+
+    System.out.println(starRating("SimpleReview.txt"));
+    System.out.println(fakeStarRating("SimpleReview.txt"));
   }
 }
