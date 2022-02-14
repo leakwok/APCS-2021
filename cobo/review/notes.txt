@@ -1,3 +1,9 @@
+Watermelon (Lea Kwok, Nina Jiang, Lawrence Joa)
+APCS pd7
+L06: Read/Review/Expand
+2022-02-14
+time spent: 1.5 hr
+
 Activity 1
 
 Question 1
@@ -15,4 +21,5 @@ a) It will compile because sentimentVal() returns a double and the variable is o
 b) It will not compile because the parameter is 0.5, which is not the parameter sentimentVal() takes in, which is string
 c) It will not compile because sentimentVal() only takes in one String, not two
 
-Activity 2
+* The totalSentiment() of TestReview.txt yields a floating value of 0.08999999999999994 instead of a double.
+* Is the getPunctuation() method necessary?
