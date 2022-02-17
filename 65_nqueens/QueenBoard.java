@@ -1,3 +1,9 @@
+// Watermelon (Lea Kwok, Nina Jiang, Lawrence Joa)
+// APCS pd7
+// HW65 -- How Many Queens Can a Thinker Place, If a Thinker Can Place Queens...
+// 2022-02-16
+// time spent: 00.8 hrs
+
 /***
  * class QueenBoard
  * Generates solutions for N-Queens problem.
@@ -31,7 +37,9 @@ public class QueenBoard
    */
   public boolean solve()
   {
-    solveH(_board.length);
+    if(solveH(0)){
+        return true;
+    }
     return false;
   }
 
@@ -41,12 +49,6 @@ public class QueenBoard
    */
   private boolean solveH( int col )
   {
-    /* for(int i=0; i<size; i++){
-      if(_board[i][col]){
-
-      }
-
-    } */
     if(col == _board.length){
         return true;
     }
@@ -57,7 +59,7 @@ public class QueenBoard
                 return true;
             }
             
-                removeQueen(row, col);
+            removeQueen(row, col);
             
         }
         
@@ -206,6 +208,31 @@ public class QueenBoard
 
     System.out.println(b.solve());
     b.printSolution();
+
+    //test 8
+    QueenBoard c = new QueenBoard(8);
+    System.out.println(c.solve());
+    c.printSolution();
+
+    //test 9
+    QueenBoard d = new QueenBoard(9);
+    System.out.println(d.solve());
+    d.printSolution();
+
+    //test 11
+    QueenBoard e = new QueenBoard(11);
+    System.out.println(e.solve());
+    e.printSolution();
+
+    //test 13
+    QueenBoard f = new QueenBoard(13);
+    System.out.println(f.solve());
+    f.printSolution();
+
+    //test 20
+    QueenBoard g = new QueenBoard(20);
+    System.out.println(g.solve());
+    g.printSolution();
   }
 
 }//end class

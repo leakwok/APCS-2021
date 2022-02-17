@@ -1,0 +1,16 @@
+// Watermelon (Lea Kwok, Nina Jiang, Lawrence Joa)
+// APCS pd7
+// HW65 -- How Many Queens Can a Thinker Place, If a Thinker Can Place Queens...
+// 2022-02-16
+// time spent: 00.8 hrs
+
+DISCO:
+- We can use solveH() recursively by adding a queen, and if it worked, then we incremented the number of columns by one, and called solveH() on that.
+- We needed if(col == _board.length) for solveH() to work recursively.
+- The solution board will always be the same for n.
+
+QCC:
+- Thinking about the problem recursively helped us find solutions.
+
+Hypothesis: 
+While n >= 5, there will always be at least one solution for an n x n board.
