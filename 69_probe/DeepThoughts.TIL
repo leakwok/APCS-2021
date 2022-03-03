@@ -1,0 +1,22 @@
+Lea Kwok
+APCS
+HW69 -- Making Sense
+time spent: 00.5 hour
+
+ * Mean execution times(real time) for boards of size n*n:
+ * n=5   1.579s    across 5 executions
+ * n=6   20.198s    across 3 executions
+ * n=7   11min 16.567s    across 1 execution
+ * n=8   15min 7.039s    across 1 execution
+
+q0: From any starting position, can an open tour always be found? Explain.
+    No, from certain start positions, a solution cannot be found, so an open tour would not be possible. As long as there is a solution possible from that position, there is an open tour.
+ 
+q1: Same, but for closed tour.
+
+q2: How do you explain the increase in execution time as n increases?
+
+q3: Thoughts on optimization?
+
+
+ALGO:
