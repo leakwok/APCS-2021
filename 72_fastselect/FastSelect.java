@@ -11,7 +11,7 @@ import java.util.Arrays;
  * BEST CASE SCENARIO: When the first pivot that we choose maps to the y-1th index after being partitioned
  * WORST CASE SCENARIO: When the array is in reverse order should be the worst case
  * DISCO: We believe that this algorithm assumes that all elements are unique, which may not be the case. This is because our linear search simply finds the first occurance of the value not all of them.
- * QCC: How can we fix the assumptiom above, and improve time efficiency??
+ * QCC: How can we fix the assumptiom above, and improve time efficiency?? Why does it break when finding the greatest element (without the for loop for if(end == arr.length-1 && end-start == 1) )?
  */
 public class FastSelect {
     //--------------v  HELPER METHODS  v--------------
