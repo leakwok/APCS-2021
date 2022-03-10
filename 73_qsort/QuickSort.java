@@ -1,10 +1,10 @@
-//Clyde Sinclair
-//APCS pd0
-//HW72 -- QuickSort
-//2022-03-09w
-//time spent: _h
-
 /***
+ * Unicorn Unicodes: Eric, Lea, Kosta
+ * APCS
+ * HW73 -- All About the About Face
+ * 2022-03-09
+ * time spent: 01.0 hours
+
  * class QuickSort
  * Implements quicksort algo to sort an array of ints in place
  *
@@ -69,14 +69,19 @@ public class QuickSort
    */
   public static void qsort( int[] d )
   {
-    for (int i = 1; i < d.length+1; i++){
-        d[i-1] = QuickSelect.fastSelect(d, i);
-    }
+    qsortHelper(d);
   }
 
   //you may need a helper method...
 
-
+  public static void qsortHelper(int[] d){
+    //partition
+        int indPvt = QuickSelect.partition(d, 0, d.length-1);
+    //partition left half
+        QuickSelect.partition(d, 0, indPvt);
+      //partition right half
+        QuickSelect.partition(d, indPvt, d.length-1);
+  }
   
 
 

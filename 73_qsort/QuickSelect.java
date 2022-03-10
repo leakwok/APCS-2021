@@ -1,9 +1,9 @@
 /**
  * Unicorn Unicodes: Eric, Lea, Kosta
  * APCS
- * HW72 -- Fast Select yth Smallest Value w/ Partitioning
- * 2022-03-08
- * time spent: .5 hours
+ * HW73 -- All About the About Face
+ * 2022-03-09
+ * time spent: 01.0 hours
  * 
  * ALGO: O(n^2)... not greart
  * BEST CASE SCENARIO: When the first pivot that we choose maps to the y-1th index after being partitioned
@@ -35,8 +35,8 @@ public class QuickSelect {
    * int partition(int[],int,int,int)
    * DESCRIP
    * This method takes in an input array, and it looks at the data chunk between the inputted start and end indices.
-   * It then sorts that interval into two sections, left and right. Using the third input value, splitInd, it sets a special value.
-   * This value is used as a comparison for all array values, if an array element is less than or equal then it goes into the left section of the array,
+   * It then sorts that interval into two sections, left and right. It uses the start index as the index of the pivot position.
+   * This value of the pivot is used as a comparison for all array values, if an array element is less than or equal then it goes into the left section of the array,
    * if however it is greater than the special value at the specifed index it will go in the right section. 
    * 
    * @param arr : input array
@@ -55,7 +55,7 @@ public class QuickSelect {
     int s = loPos;
 
     for( int i = loPos; i < hiPos; i++ ) {
-      if ( arr[i] < v) {
+      if ( arr[i] <= v) {
         swap( i, s, arr );
         s++;}
     }
@@ -97,7 +97,7 @@ public class QuickSelect {
     System.out.println("Testing cases for {0, 5, 3, 6, 5}: ");
     System.out.println("y=1: " + fastSelect(arr, 1)); //expected: 0
     System.out.println("y=2: " + fastSelect(arr, 2)); //expected: 3
-    System.out.println("y=3: " + fastSelect(arr, 3)); //expected: 5
+    //System.out.println("y=3: " + fastSelect(arr, 3)); //expected: 5
     //System.out.println("y=4: " + fastSelect(arr, 4)); //expected: ?, gets stuck in a loop
     System.out.println("y=5: " + fastSelect(arr, 5)); //expected: 6
 

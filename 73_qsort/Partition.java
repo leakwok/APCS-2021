@@ -1,10 +1,10 @@
-// Clyde Sinclair
-// APCS pd0
-// HW71 -- Reading for intent, tracing for VICTORY
-// 2022-03-07m
-// time spent:  hrs
-
 /***
+ * Unicorn Unicodes: Eric, Lea, Kosta
+ * APCS
+ * HW73 -- All About the About Face
+ * 2022-03-09
+ * time spent: 01.0 hours
+
  * class Parition (née Mysterion)
  * 
  * <h1>MYSTERION is PARTITION</h1>
@@ -81,8 +81,9 @@ public class Partition
    * @return int position of 
    *
    */
-  public static int partition( int arr[], int loPos, int hiPos, int pvtPos)
+  public static int partition( int arr[], int loPos, int hiPos)
   {
+    int pvtPos = (loPos + hiPos) / 2;
     int v = arr[pvtPos];
 
     swap( pvtPos, hiPos, arr);
