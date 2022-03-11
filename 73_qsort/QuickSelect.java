@@ -48,7 +48,7 @@ public class QuickSelect {
    */
   public static int partition( int arr[], int loPos, int hiPos)
   {
-    int pvtPos = (loPos + hiPos) / 2;
+    int pvtPos = loPos;
     int v = arr[pvtPos];
 
     swap( pvtPos, hiPos, arr);

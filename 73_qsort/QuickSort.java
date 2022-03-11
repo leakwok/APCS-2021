@@ -1,3 +1,5 @@
+import javax.xml.transform.stax.StAXResult;
+
 /***
  * Unicorn Unicodes: Eric, Lea, Kosta
  * APCS
@@ -17,6 +19,12 @@
  *
  * 3. Approach to handling duplicate values in array:
  *
+ * 
+ * QCC:
+ * Lots of StackOverflowErrors when writing qsortHelper. Solved by trial and error and QAF comment by Team Watermelon but still unsure of how exactly code works.
+ * Trials:
+ * while(first != last)
+ * if(first != last)
  **/
 
 public class QuickSort
@@ -69,18 +77,48 @@ public class QuickSort
    */
   public static void qsort( int[] d )
   {
-    qsortHelper(d);
+    int start = 0;
+    int end = d.length-1;
+    
+    /* int left = 0;
+    int right = 0;
+    int partLoc = QuickSelect.partition(d, 0, d.length-1);
+    if(end - partLoc == 1){
+      d[partLoc] = left;
+      d[end] = right;
+    }
+    else{
+      left = QuickSelect.partition(d, start, partLoc);
+      right = QuickSelect.partition(d, partLoc, d.length-1);
+
+    } */
+
+    qsortHelper(d, start, end);
+
+    /* //partition whole
+    while(start != partLoc-1 && end != partLoc+1){
+      if(start == partLoc){
+        start++;
+      }
+      if(end == partLoc){
+        end--;
+      }
+      //partition left
+      QuickSelect.partition(d, start, partLoc-1);
+      //partition right
+      QuickSelect.partition(d, partLoc+1, end); */
+    
   }
 
   //you may need a helper method...
 
-  public static void qsortHelper(int[] d){
-    //partition
-        int indPvt = QuickSelect.partition(d, 0, d.length-1);
-    //partition left half
-        QuickSelect.partition(d, 0, indPvt);
-      //partition right half
-        QuickSelect.partition(d, indPvt, d.length-1);
+  public static void qsortHelper(int[] d, int first, int last){
+    
+    int partLoc = QuickSelect.partition(d, first, d.length-1);
+    if(first < last){
+      qsortHelper(d, first, partLoc-1);
+      qsortHelper(d, partLoc+1, last);
+    }
   }
   
 
