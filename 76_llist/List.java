@@ -1,4 +1,11 @@
 /***
+ *  * Unicorn Unicodes: Eric, Lea, Kosta
+ * APCS
+ * HW76 -- We Got a Little Ol' Convoy
+ * 2022-03-15
+ * time spent: 01.0 hours
+ * KtS: 3
+ * 
  * interface List
  * subset of actual Java List interface
  * Specifies actions a List must be able to perform.

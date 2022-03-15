@@ -1,9 +1,10 @@
 /**
  * Unicorn Unicodes: Eric, Lea, Kosta
  * APCS
- * HW75 -- Nodal Recall
- * 2022-03-14
- * time spent: 00.8 hours
+ * HW76 -- We Got a Little Ol' Convoy
+ * 2022-03-15
+ * time spent: 01.0 hours
+ * KtS: 3
 
  * class LLNode
  * Implements a node, for use in lists and other container classes.

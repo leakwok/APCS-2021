@@ -1,4 +1,11 @@
 /***
+ *  * Unicorn Unicodes: Eric, Lea, Kosta
+ * APCS
+ * HW76 -- We Got a Little Ol' Convoy
+ * 2022-03-15
+ * time spent: 01.0 hours
+ * KtS: 3
+ * 
  * class LList
  * Implements a linked list of LLNodes, each containing String data
  **/
