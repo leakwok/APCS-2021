@@ -14,27 +14,26 @@
 public class LLNode
 {
   //instance vars
-    private String CAR;
-    private LLNode CDR;
-
+  private String _cargo;
+  private LLNode _nextNode;
 
   // constructor
   public LLNode( String value, LLNode next )
   {
-    CAR = value;
-    CDR = next;
+    _cargo = value;
+    _nextNode = next;
   }
 
 
   //--------------v  ACCESSORS  v--------------
   public String getCargo()
   {
-    return CAR; 
+    return _cargo;
   }
 
   public LLNode getNext()
   {
-    return CDR;
+    return _nextNode;
   }
   //--------------^  ACCESSORS  ^--------------
 
@@ -42,15 +41,16 @@ public class LLNode
   //--------------v  MUTATORS  v--------------
   public String setCargo( String newCargo )
   {
-    CDR = new LLNode(CAR, null);
-    CAR = newCargo;
-    return CAR;
+    String foo = getCargo();
+    _cargo = newCargo;
+    return foo;
   }
 
   public LLNode setNext( LLNode newNext )
   {
-    CDR = newNext;
-    return CDR;
+    LLNode foo = getNext();
+    _nextNode = newNext;
+    return foo;
   }
   //--------------^  MUTATORS  ^--------------
 
@@ -58,7 +58,7 @@ public class LLNode
   // override inherited toString
   public String toString()
   {
-    return CAR;
+    return _cargo;
   }
 
 
