@@ -21,7 +21,7 @@ public class LList implements List //interface def must be in this dir
   public LList()
   {
     // YOUR CODE HERE
-    _head = new LLNode(null, null);
+    _head = null;
     _size = 0;
   }
 
@@ -33,10 +33,12 @@ public class LList implements List //interface def must be in this dir
     // YOUR CODE HERE
     LLNode temp = _head;
     
-        temp.setNext(_head.getNext());
-        temp.setCargo(newVal);
+    temp.setNext(_head.getNext());
+    temp.setCargo(newVal);
     
     _head = temp;
+
+    _size++;
     return true;
   }
 
@@ -64,14 +66,28 @@ public class LList implements List //interface def must be in this dir
 
     // YOUR CODE HERE
     LLNode temp = _head;
-    for(int i = 0; i < index; i++) {
-        _head = _head.getNext();
+    LLNode othTemp = _head;
+    LLNode temp3 = _head;
+
+    //find node to replace
+    for(int i = 0; i < index-1; i++) {
+        temp = temp.getNext();
     }
-    _head.setCargo(newVal);
-    for(int j = index-1; j > -1; j--) {
-        _head.setCargo(temp.getCargo());
-    }
-    return get(index);
+
+    //replace node
+    temp.setCargo(newVal);
+
+    //add prior nodes
+/*     for(int j = index; j > 0; j--) {
+        temp3.setCargo(othTemp.getCargo());
+    } */
+    
+    temp.setNext(temp);
+
+    //set _head
+    _head = temp3;
+
+    return newVal;
   }
 
 
@@ -79,13 +95,6 @@ public class LList implements List //interface def must be in this dir
   public int size()
   {
     // YOUR CODE HERE
-    LLNode temp = _head;
-    int len = 0;
-    while(temp != null) {
-        len += 1;
-        temp = temp.getNext();
-    }
-    _size = len;
     return _size;
   }
 
