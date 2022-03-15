@@ -21,7 +21,7 @@ public class LList implements List //interface def must be in this dir
   public LList()
   {
     // YOUR CODE HERE
-    _head = new LLNode("", null);
+    _head = new LLNode(null, null);
     _size = 0;
   }
 
@@ -76,7 +76,7 @@ public class LList implements List //interface def must be in this dir
     // YOUR CODE HERE
     LLNode temp = _head;
     int len = 0;
-    while(temp != null) {
+    while(temp.getCargo() != null) {
         len += 1;
         temp = temp.getNext();
     }
@@ -95,9 +95,14 @@ public class LList implements List //interface def must be in this dir
     LLNode temp = _head;
     String res = "";
     while(temp != null) {
-        res += temp.getCargo();
-        res += " ";
-        temp = temp.getNext();
+        if(temp == null){
+            
+        }
+        else{
+            res += temp;
+            res += " ";
+            temp = temp.getNext();
+        }
     }
     return res;
   }
@@ -116,6 +121,7 @@ public class LList implements List //interface def must be in this dir
     james.add("a");
     System.out.println( james );
     System.out.println( "size: " + james.size() );
+    /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     james.add("need");
     System.out.println( james );
     System.out.println( "size: " + james.size() );
@@ -126,7 +132,6 @@ public class LList implements List //interface def must be in this dir
     james.set( 1, "got" );
     System.out.println( "...and now 2nd item is: " + james.set(1,"got") );
     System.out.println( james );
-    /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
   }
 
