@@ -1,31 +1,30 @@
 /***
  *  * Unicorn Unicodes: Eric, Lea, Kosta
  * APCS
- * HW77 -- Insert|Remove
- * 2022-03-16
- * time spent: 02.0 hours
+ * HW78 -- Double Up
+ * 2022-03-17
+ * time spent: 01.5 hours
  * KtS: 2
  *
  * DISCO:
- * It's good to use temporary holders so the original _head isn't overwritten.
+ * Creating two CDRs is a smart way to point in two different directions.
  *
  * QCC:
- * How does the set() in the closet work if _head isn't being set = to anything in the method? It still returns the correct DLLNode, which is interesting.
- * Is there a better way to store values instead of adding them one by one to another temporary holder?
+ * Does the tail pointer point to the last node or the left CDR of the first node?
+ * Would the left CDR of the first node point back to the last node then?
+ * And would the right CDR of the last node point to the first node?
  *
  * ALGO ADD:
- * if adding at index 0, use add(String)
- * else, iterate through temporary holder until you reach index
- * store these nodes
- * add String to remainder of temp
- * readd nodes in order
+ * create new node with value being added
+ * set _head equal to new node
+ * set _tail equal to left most CDR
+ * update size
  *
  *
  * ALGO REM:
  * if removing the first node, set _head equal to CDR
- * else, start by storing the nodes up to and including the index to be removed (adding the CAR from temp into an LList holder and moving temp to the next node)
- * add prior nodes to index to a temporary holder
- * combine the two parts (part before the removed node and part after the removed node)
+ * else, walk to node right before index to be removed
+ * get value of node after index and set temp to that node
  *
  * class LList
  * Implements a linked list of DLLNodes, each containing String data
