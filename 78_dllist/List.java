@@ -1,4 +1,10 @@
 /***
+ * Unicorn Unicodes: Eric, Lea, Kosta
+ * APCS
+ * HW78 -- Double Up
+ * 2022-03-17
+ * time spent: 01.5 hours
+ * KtS: 2
  * interface List
  * subset of actual Java List interface
  * Specifies actions a List must be able to perform.

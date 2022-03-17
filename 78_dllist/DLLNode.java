@@ -1,10 +1,10 @@
 /**
  * Unicorn Unicodes: Eric, Lea, Kosta
  * APCS
- * HW76 -- We Got a Little Ol' Convoy
- * 2022-03-15
- * time spent: 01.0 hours
- * KtS: 3
+ * HW78 -- Double Up
+ * 2022-03-17
+ * time spent: 01.5 hours
+ * KtS: 2
 
  * class DLLNode
  * Implements a node, for use in lists and other container classes.

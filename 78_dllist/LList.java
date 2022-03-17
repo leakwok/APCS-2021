@@ -1,5 +1,5 @@
 /***
- *  * Unicorn Unicodes: Eric, Lea, Kosta
+ * Unicorn Unicodes: Eric, Lea, Kosta
  * APCS
  * HW78 -- Double Up
  * 2022-03-17
@@ -19,7 +19,6 @@
  * set _head equal to new node
  * set _tail equal to left most CDR
  * update size
- *
  *
  * ALGO REM:
  * if removing the first node, set _head equal to CDR
