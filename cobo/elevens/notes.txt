@@ -1,0 +1,19 @@
+Team Fried Chicken: Nina Jiang, Lea Kwok, Lindsay Phung
+APCS pd7
+L07: But These Go Up To Eleven
+2022-03-19
+Time Spent: 2.0h
+
+DISCO:
+- Object oriented programming is useful, especially when dealing with something
+  as intricate as Elevens.
+- It's important to compile after each small change instead of many so there are
+  less errors to fix and we know what to fix.
+- It gets a little confusing when there are multiple classes and we want to access
+  an element of a List or Array.
+
+QCC:
+- Perfect shuffling or selection shuffling, efficiency wise?
+- What does a deprecation warning mean? How may we resolve this?
+  "Some input files use or override a deprecated API."
+  "Warning: [deprecation] Integer(int) in Integer has been deprecated."
