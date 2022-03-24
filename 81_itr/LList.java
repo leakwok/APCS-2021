@@ -11,7 +11,7 @@ public class LList implements List //your List.java must be in same dir
   private int _size;
 
   // constructor -- initializes instance vars
-  public LList( )
+  public LList<T>( )
   {
     _head = _tail = null; //at birth, a list has no elements
     _size = 0;
