@@ -19,13 +19,30 @@ public class ListTester
   {
 
     //instantiate... var type List, obj type LList
-    List wu = new LList();
+    List<Integer> wu = new LList();
 
     System.out.println(wu);
-    wu.add("GZA");
+    wu.add(35);
 
     System.out.println(wu);
-    wu.add("ODB");
+    wu.add(58);
+
+    System.out.println(wu);
+    wu.add(1, 91 );
+
+    System.out.println(wu);
+    wu.remove(2);
+
+    System.out.println(wu);
+    wu.get(1);
+
+    System.out.println(wu);
+    wu.set(1, 324);
+
+    System.out.println(wu.size());
+
+    System.out.println(wu);
+    /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     System.out.println(wu);
     wu.add("Inspectah Deck");
@@ -58,7 +75,6 @@ public class ListTester
         wu.remove(n);
         System.out.println("Updated list: " + wu);
     }
-    /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
   }//end main()
 
