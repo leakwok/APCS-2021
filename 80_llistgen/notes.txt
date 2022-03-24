@@ -1,0 +1,6 @@
+DISCO:
+- Be careful when replacing "String" with "Object", especially for the toString() method. 
+- Objects can be turned into Strings by using the toString() method from class Object.
+
+QCC:
+- Why can we put T in List.java and not Object? Or why are we using Object and not T in LList and DLLNode?
