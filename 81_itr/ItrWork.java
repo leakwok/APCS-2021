@@ -1,4 +1,10 @@
 /***
+Unicorn Unicodes: Eric, Lea, Kosta
+APCS
+HW81 -- Thank You, Next
+2022-03-24
+time spent: 01.2 hrs
+
  * class ItrWork
  *  SKELETON
  * Facilitates familiarization with iterators
@@ -6,13 +12,23 @@
 
 /***
     DISCO
-    - Use typecasting
+    - Use typecasting for turning Iterator into Integer
+    - We do not need to declare List<Integer> = new LList<Integer>, instead, we can make the object type an ArrayList<Integer> (many thanks to Mr.K of pd6)
+    - The Iterator class is useful in only obtaining one element of a List at a time
 
     QCC
+    - ISSUE RESOLVED AFTER CONSULTING TEAM MR.K: Why can't List<Integer> be object type LList<Integer>?
+      Our error message: incompatible types: List<Integer> cannot be converted to LList<Integer>
+    - Why does iterator() only work on Lists? Same for foreach loops. LLists are not "compatible"
+    - Why an object type of ArrayList out of all things?
 
     SUMMARY THE FIRST:
+    - hasNext() checks if there are any more elements left in the set , returns true if there are, returns false if not
+    - next() obtains the next element in the set and returns it
+    - remove() removes the last element of the set returned by next()
 
     SUMMARY THE SECOND:
+    - Using Iterator makes it easier to single out elements in a List and is similar to using a foreach loop, which also focuses on one element at a time, and they both go in the order of the list
 
 **/
 
@@ -28,9 +44,7 @@ public class ItrWork
 
   //using FOREACH loop
   //returns a boolean to indicate whether key is present in L
-  public static boolean foundA( Integer key,
-                                LList<Integer> L )
-  {
+  public static boolean foundA( Integer key, List<Integer> L ){
     /*** YOUR IMPLEMENTATION HERE ***/
     for(Integer i : L){
       if(i.equals(key)){
@@ -42,8 +56,7 @@ public class ItrWork
 
   //explicitly using an iterator
   //returns a boolean to indicate whether key is present in L
-  public static boolean foundB( Integer key,
-                                LList<Integer> L )
+  public static boolean foundB( Integer key, List<Integer> L )
   {
     /*** YOUR IMPLEMENTATION HERE ***/
     Iterator it = L.iterator();
@@ -59,10 +72,10 @@ public class ItrWork
 
   //using FOREACH loop
   //returns a list containing the odd numbers in L
-  public static LList<Integer> oddsA( LList<Integer> L )
+  public static List<Integer> oddsA( List<Integer> L )
   {
     /*** YOUR IMPLEMENTATION HERE ***/
-    LList<Integer> odds = new LList<Integer>();
+    List<Integer> odds = new ArrayList<Integer>();
     for(Integer i : L){
       if(i % 2 == 1){
         odds.add(i);
@@ -73,11 +86,11 @@ public class ItrWork
 
   //explicitly using an iterator
   //returns a list containing the odd numbers in L
-  public static LList<Integer> oddsB( LList<Integer> L )
+  public static List<Integer> oddsB( List<Integer> L )
   {
     /*** YOUR IMPLEMENTATION HERE ***/
     Iterator it = L.iterator();
-    LList<Integer> odds = new LList<Integer>();
+    List<Integer> odds = new ArrayList<Integer>();
     while(it.hasNext()){
       Integer next = (Integer) it.next();
       if(next % 2 == 1){
@@ -90,7 +103,7 @@ public class ItrWork
 
   //explicitly using an iterator
   //modifies L s.t. it contains no evens
-  public static void removeEvens( LList<Integer> L )
+  public static void removeEvens( List<Integer> L )
   {
     /*** YOUR IMPLEMENTATION HERE ***/
     Iterator it = L.iterator();
@@ -106,41 +119,47 @@ public class ItrWork
   public static void main( String [] args )
   {
 
-    //var type: List   obj type: Integer
-    LList<Integer> L = new LList<Integer>();
-    /*~~~~~~~~~~~~~~~m~o~v~e~~m~e~~d~o~w~n~~~~~~~~~~~~~~
-
+    //var type: List   obj type: ArrayList
+    List<Integer> L = new ArrayList<Integer>();
+    
     for( int i = 0; i < 10; i++ )
-      L.add(i);
-
-
+    L.add(i);
+    
+    
     // TASK: write code to print the contents of L...
-
+    
     // a) using a FOREACH loop
-
-
+    for(Integer i : L){
+      System.out.println(i);
+    }
+    
     // b) explicitly using an iterator
-
-
+    Iterator it = L.iterator();
+    while(it.hasNext()){
+      Integer next = (Integer) it.next();
+      System.out.println(next);
+    }
+    
     System.out.println("\nTesting foundA...");
     System.out.println("9 in L? -> " + foundA(9,L) );
     System.out.println("13 in L? -> " + foundA(13,L) );
-
+    
     System.out.println("\nTesting foundB...");
     System.out.println("9 in L? -> " + foundB(9,L) );
     System.out.println("13 in L? -> " + foundB(13,L) );
-
+    
     System.out.println("\nTesting oddsA...");
-    LList<Integer> A = oddsA(L);
+    List<Integer> A = oddsA(L);
     for( int n : A ) System.out.println(n);
-
+    
     System.out.println("\nTesting oddsB...");
-    LList<Integer> B = oddsB(L);
+    List<Integer> B = oddsB(L);
     for( int n : B ) System.out.println(n);
-
+    
     System.out.println("\nTesting removeEvens...");
     removeEvens(L);
     for( int n : L ) System.out.println(n);
+    /*~~~~~~~~~~~~~~~m~o~v~e~~m~e~~d~o~w~n~~~~~~~~~~~~~~
       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
   }//end main

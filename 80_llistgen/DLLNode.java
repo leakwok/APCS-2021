@@ -1,17 +1,23 @@
 /***
+Unicorn Unicodes: Eric, Lea, Kosta
+APCS
+HW80 -- Generically Speaking
+2022-03-24
+time spent: 00.6 hrs
+
  * class DLLNode v1
  * Implements a node, for use in lists and other container classes.
  * Stores a String as cargo.
  **/
 
-public class DLLNode
+public class DLLNode<T>
 {
-  private Object _cargo;    //cargo may only be of type Object
-  private DLLNode _nextNode, _prevNode; //pointers to next, prev DLLNodes
+  private T _cargo;    //cargo may only be of type Object
+  private DLLNode<T> _nextNode, _prevNode; //pointers to next, prev DLLNodes
 
 
   // constructor -- initializes instance vars
-  public DLLNode( Object value, DLLNode prev, DLLNode next )
+  public DLLNode( T value, DLLNode<T> prev, DLLNode<T> next )
   {
   // override inherited toString
     _cargo = value;
@@ -21,32 +27,32 @@ public class DLLNode
 
 
   //--------------v  ACCESSORS  v--------------
-  public Object getCargo() { return _cargo; }
+  public T getCargo() { return _cargo; }
 
-  public DLLNode getNext() { return _nextNode; }
+  public DLLNode<T> getNext() { return _nextNode; }
 
-  public DLLNode getPrev() { return _prevNode; }
+  public DLLNode<T> getPrev() { return _prevNode; }
   //--------------^  ACCESSORS  ^--------------
 
 
   //--------------v  MUTATORS  v--------------
-  public Object setCargo( Object newCargo )
+  public T setCargo( T newCargo )
   {
-    Object foo = getCargo();
+    T foo = getCargo();
     _cargo = newCargo;
     return foo;
   }
 
-  public DLLNode setNext( DLLNode newNext )
+  public DLLNode<T> setNext( DLLNode<T> newNext )
   {
-    DLLNode foo = getNext();
+    DLLNode<T> foo = getNext();
     _nextNode = newNext;
     return foo;
   }
 
-  public DLLNode setPrev( DLLNode newPrev )
+  public DLLNode<T> setPrev( DLLNode<T> newPrev )
   {
-    DLLNode foo = getPrev();
+    DLLNode<T> foo = getPrev();
     _prevNode = newPrev;
     return foo;
   }
@@ -64,12 +70,12 @@ public class DLLNode
 
  /*********************
     //Create a node
-    DLLNode first = new DLLNode( "cat", null );
+    DLLNode<T> first = new DLLNode<T>( "cat", null );
     //Create a new node after the first
-    first.setNext( new DLLNode( "dog", null ) );
+    first.setNext( new DLLNode<T>( "dog", null ) );
     //Create a third node after the second
-    first.getNext().setNext( new DLLNode( "cow", null ) );
-    DLLNode temp = first;
+    first.getNext().setNext( new DLLNode<T>( "cow", null ) );
+    DLLNode<T> temp = first;
     while( temp != null ) {
       System.out.println( temp );
       temp = temp.getNext();
@@ -77,4 +83,4 @@ public class DLLNode
    ***********************/
   }//end main
 
-}//end class DLLNode
+}//end class DLLNode<T>

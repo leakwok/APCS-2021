@@ -1,10 +1,9 @@
 /***
- * Unicorn Unicodes: Eric, Lea, Kosta
- * APCS
- * HW78 -- Double Up
- * 2022-03-17
- * time spent: 01.5 hours
- * KtS: 2
+Unicorn Unicodes: Eric, Lea, Kosta
+APCS
+HW80 -- Generically Speaking
+2022-03-24
+time spent: 00.6 hrs
  *
  * class ListTester
  * ...for putting your LList through its paces
@@ -19,7 +18,7 @@ public class ListTester
   {
 
     //instantiate... var type List, obj type LList
-    List<Integer> wu = new LList();
+    List<Integer> wu = new LList<Integer>();
 
     System.out.println(wu);
     wu.add(35);

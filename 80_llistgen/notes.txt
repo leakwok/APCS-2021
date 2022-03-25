@@ -1,6 +1,12 @@
+Unicorn Unicodes: Eric, Lea, Kosta
+APCS
+HW80 -- Generically Speaking
+2022-03-24
+time spent: 00.6 hrs
+
 DISCO:
-- Be careful when replacing "String" with "Object", especially for the toString() method. 
-- Objects can be turned into Strings by using the toString() method from class Object.
+- Be careful when replacing "String" with "T", especially for the toString() method. 
+- T can be turned into Strings by using the toString() method from class Object.
 
 QCC:
-- Why can we put T in List.java and not Object? Or why are we using Object and not T in LList and DLLNode?
+- Why can we put T in List.java and not Object?
