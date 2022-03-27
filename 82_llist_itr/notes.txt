@@ -1,0 +1,12 @@
+Unicorn Unicodes: Eric, Lea, Kosta
+APCS
+HW82 -- Roll Your Own Iterator
+2022-03-27
+time spent: 00.8 hrs
+
+DISCO:
+- Instead of returning _dummy.getNext().getCargo() in the next() method, first set _dummy to _dummy.getNext() so the pointer is accurately representing where we are iterating from.
+
+QCC:
+- Are we supposed to create a new LList in class MyIterator for the constructor and new methods? or would it just be using _dummy and DLLNode's methods?
+- Why isn't the first node of the list printing?
