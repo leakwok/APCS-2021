@@ -297,6 +297,7 @@ public class LList<T> implements List<T>
         //get next node
         _dummy = _dummy.getNext();
         return _dummy.getCargo();
+        
       }
       //return 
       return null;
