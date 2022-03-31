@@ -1,0 +1,11 @@
+Unicorn Unicodes: Eric, Lea, Kosta
+APCS
+HW85 -- Leon Leonwood Stack
+2022-03-31
+time spent: 00.7 hrs
+
+DISCO:
+- You cannot use a foreach loop on a Stack. 
+
+QCC:
+- Would a toString() method make sense to implement?

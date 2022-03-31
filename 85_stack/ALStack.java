@@ -1,8 +1,16 @@
 /***
+Unicorn Unicodes: Eric, Lea, Kosta
+APCS
+HW85 -- Leon Leonwood Stack
+2022-03-31
+time spent: 00.7 hrs
+
  * class Latkes
  * v1
  * Implements a stack of Strings using an encapsulated array
  **/
+
+ import java.util.*;
 
 public class ALStack<PANCAKE> implements Stack<PANCAKE>
 {
@@ -11,7 +19,7 @@ public class ALStack<PANCAKE> implements Stack<PANCAKE>
 
 
   //constructor
-  public ALStack<PANCAKE>()
+  public ALStack()
   {
     _stack = new ArrayList<PANCAKE>();
     _stackSize = 0;
@@ -32,7 +40,12 @@ public class ALStack<PANCAKE> implements Stack<PANCAKE>
     PANCAKE retStr = null;
     if ( isEmpty() )  return null;
     retStr = _stack.remove(_stackSize-1);
+    _stackSize--;
     return retStr;
+  }
+
+  public PANCAKE peekTop() {
+    return _stack.get(_stackSize - 1);
   }
 
 
