@@ -13,6 +13,7 @@
 
 public class Scheme
 {
+
   /***
    * precond:  Assumes expr is a valid Scheme (prefix) expression,
    *           with whitespace separating all operators, parens, and 
@@ -24,7 +25,53 @@ public class Scheme
    **/
   public static String evaluate( String expr )
   {
+    //make new stack
+    LLStack<String> stack = new LLStack<String>();
 
+    //make operation int
+    int oper = 0;
+
+    //make return str
+    String finalAns = "";
+
+    //split each character up and put in array
+    String[] holderArr = expr.split("");
+
+    //add each character to stack
+    for(String s : holderArr){
+
+        stack.push(s);
+
+        //if operation is found, set operation int
+        if(stack.peekTop().equals("+")){
+          oper = 1;
+        }
+        if(stack.peekTop().equals("-")) {
+          oper = 2;
+        }
+        if(stack.peekTop().equals("*")){
+          oper = 3;
+        }
+
+        //search for )
+        if(stack.peekTop().equals(")")){
+          //pop )
+          stack.pop();
+
+          //pop \\s
+          stack.pop();
+
+          //unload 
+          finalAns = unload(oper, stack);
+
+          //add value back
+          stack.push(finalAns);
+        }
+
+    }//end foreach
+
+
+    return finalAns;
   }//end evaluate()
 
 
@@ -34,8 +81,54 @@ public class Scheme
    *           Returns the result of operating on sequence of operands.
    *           Ops: + is 1, - is 2, * is 3
    **/
-  public static String unload( int op, Stack<String> numbers )
+  public static String unload( int op, LLStack<String> numbers )
   {
+    //make temp holder string
+    String temp = "";
+
+    //make return int
+    int answer = 0;
+
+
+    //pop all until reach operator
+    while(!(numbers.peekTop().equals("+")) || !(numbers.peekTop().equals("-")) || !(numbers.peekTop().equals("*"))){
+      //add each to temp str
+      temp += numbers.pop();
+    }
+    
+
+    //split string with regex
+    String[] tempHold = temp.split("\\s");
+
+    //perform operation
+    if(op == 1){
+      //addition
+      for(String s : tempHold){
+        answer += Integer.parseInt(s);
+      }
+
+    } else if(op == 2){
+      //subtraction
+      answer = Integer.parseInt(tempHold[tempHold.length-1]);
+      for(int i = tempHold.length-2; i <= 0; i--){
+        answer -= Integer.parseInt(tempHold[i]);
+      }
+
+    } else if(op == 3){
+      //multiplication
+      answer = Integer.parseInt(tempHold[0]);
+      for(int i = 1; i < tempHold.length; i++){
+        answer *= Integer.parseInt(tempHold[i]);
+      }
+    }
+
+    //pop operator, \\s, (
+    for(int i = 0; i < 3; i++){
+      numbers.pop();
+    }
+    
+
+    return String.valueOf(answer);
 
   }//end unload()
 
@@ -58,10 +151,10 @@ public class Scheme
   public static void main( String[] args )
   {
 
+    String zoo1 = "( + 4 3 )";
+    System.out.println(zoo1);
+    System.out.println("zoo1 eval'd: " + evaluate(zoo1) );
     /*v~~~~~~~~~~~~~~MAKE MORE~~~~~~~~~~~~~~v
-      String zoo1 = "( + 4 3 )";
-      System.out.println(zoo1);
-      System.out.println("zoo1 eval'd: " + evaluate(zoo1) );
       //...7
 
       String zoo2 = "( + 4 ( * 2 5 ) 3 )";
