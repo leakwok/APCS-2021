@@ -1,4 +1,10 @@
 /***
+Unicorn Unicodes: Eric, Lea, Kosta
+APCS
+HW87 -- The English Do Not Wait In Line for Soup
+2022-04-03
+time spent: 00.7 hrs
+
  * interface Queue
  * Includes only methods listed in AP subset of Java
  * (Local version, to override built-in Java implementation.)
