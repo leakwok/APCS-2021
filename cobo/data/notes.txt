@@ -9,6 +9,7 @@ DISCO
 - We learned how to import a .csv file to sort through the data
 - A . refers to the current directory
 - We don't have to use all of the provided parameters in an XML or CSV, we can choose which ones we want
+- Use -f to add a file that is usually left out because of the .gitignore
 
 
 QCC
@@ -20,7 +21,7 @@ QCC
 
 Fried Chicken's CSV FLOW:
 - We found a csv containing data for movies on http://www.kaggle.com
-- To find the names of the parameters, we looked at the first line of the file
+- To find the names of the parameters to put into our ArrayList, we looked at the first line of the file
 
 
 TRUBZ
