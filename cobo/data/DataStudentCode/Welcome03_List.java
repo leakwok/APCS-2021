@@ -9,6 +9,7 @@ import java.util.Scanner;
 public class Welcome03_List {
    public static void main(String[] args) {
       DataSource ds = DataSource.connect("http://weather.gov/xml/current_obs/index.xml").load();
+      ds.printUsageString();
       ArrayList<WeatherStation> allstns = ds.fetchList("WeatherStation", "station/station_name",
              "station/station_id", "station/state",
              "station/latitude", "station/longitude");
@@ -18,20 +19,25 @@ public class Welcome03_List {
       System.out.println("Enter a state abbreviation: ");
       String state = sc.next();
       System.out.println("Stations in " + state);
+
+      ArrayList<WeatherStation> stateStations = new ArrayList<WeatherStation>();
       for (WeatherStation ws : allstns) {
          if (ws.isLocatedInState(state)) {
             System.out.println("  " + ws.getId() + ": " + ws.getName());
+            stateStations.add(ws);
          }
       }
+
+
       double mostSouth = allstns.get(0).getLat();
       int loc = 0;
-      for(int i = 0; i < allstns.size(); i++){
-        if(allstns.get(i).getLat() > mostSouth){
-          mostSouth = allstns.get(i).getLat();
+      for(int i = 0; i < stateStations.size(); i++){
+        if(stateStations.get(i).getLat() < mostSouth){
+          mostSouth = stateStations.get(i).getLat();
           loc = i;
         }
       }
-      System.out.println("The most south station is: " + allstns.get(loc).getName());
+      System.out.println("The most south station is: " + stateStations.get(loc).getName());
 
    }
 }
