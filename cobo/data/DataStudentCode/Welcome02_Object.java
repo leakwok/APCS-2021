@@ -1,3 +1,9 @@
+/* Team Fried Chicken :: Nina Jiang, Lea Kwok, Lindsey Phung
+APCS
+LAB08 -- America's Next Top Data Scientist
+2022-04-06
+time spent: 02.3 hrs */
+
 import core.data.*;
 
 public class Welcome02_Object {

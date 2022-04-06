@@ -1,19 +1,29 @@
-Team Phantom Tollbooth :: Clyde Sinclair, Fierce Dragon
+Team Fried Chicken :: Nina Jiang, Lea Kwok, Lindsey Phung
 APCS
-LAB08 --
-2022-04-05
-time spent: <elapsed time in hours, rounded to nearest tenth>
+LAB08 -- America's Next Top Data Scientist
+2022-04-06
+time spent: 02.3 hrs
 
 
 DISCO
+- We learned how to import a .csv file to sort through the data
+- A . refers to the current directory
+- We don't have to use all of the provided parameters in an XML or CSV, we can choose which ones we want
 
 
 QCC
+- Why isn't there something like sinbad,jar built into Java?
+- Is using Java really the best way to take in and process data?
+- Is there a way to tell Java to add the first n parameters of a CSV instead of typing the name of each one individually?
+- Why is sinbad.jar so big that it can't be opened in GitHub?
 
 
-<TNPG>'s CSV FLOW:
-<insert your description of your tools and workflow in creating, editing CSV files>
+Fried Chicken's CSV FLOW:
+- We found a csv containing data for movies on http://www.kaggle.com
+- To find the names of the parameters, we looked at the first line of the file
 
 
 TRUBZ
-<this lab involves using tools that are likely to introduce hiccups; log any troubleshooting issues here>
+- We didn't know how to compile Welcome01.java at first (learned from the provided readme and Piazza)
+- We didn't know how to "link" the data, since it was a local file (we put in the local path instead)
+- When fetching, we got errors for no class found, which we fixed by first putting in the type of ArrayList in "" as a parameter before our regular parameters
