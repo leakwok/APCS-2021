@@ -1,3 +1,5 @@
+import java.util.LinkedList;
+
 /***
  * class RQueue
  * SKELETON
@@ -18,33 +20,19 @@
 public class LLQueue<QUASAR> implements Queue<QUASAR>
 {
   //instance variables
-  private LLNode<QUASAR> _front, _end;
-  private LLNode<QUASAR> _queue;
-  private int _size;
+  private LinkedList<QUASAR> _list;
 
 
   // default constructor creates an empty queue
   public LLQueue()
   {
-    _size = 0;
-    _front = _queue;
-    _end = _front;
+    _list = new LinkedList<QUASAR>();
   }
 
 
   public void enqueue( QUASAR enQVal )
   {
-    if(isEmpty()){
-      LLNode<QUASAR> temp = new LLNode<QUASAR>(enQVal, null);
-      _queue = temp;
-      _front = _queue;
-      _end = _queue;
-    }
-    else{
-        LLNode<QUASAR> temp = new LLNode<QUASAR>(enQVal, null);
-        _end.setNext(temp);
-        _end = _end.getNext();
-    }
+    _list.add(enQVal);
   }//O(?)
 
 
@@ -52,39 +40,19 @@ public class LLQueue<QUASAR> implements Queue<QUASAR>
   // assume _queue ! empty
   public QUASAR dequeue()
   {
-    int index = Math.random() * _size;
-    int i = 0;
-    LLNode beforeTarget = _front;
-    while(i < index - 1) {
-      beforeTarget = beforeTarget.getNext();
-      i++;
-    }
-    LLNode target = beforeTarget.getNext();
-    beforeTarget.setNext(beforeTarget.getNext().getNext());
-    return target;
+    return _list.remove();
   }//O(?)
 
 
   public QUASAR peekFront()
   {
-
-  }//O(?)
-
-
-  /***
-   * void sample() -- a means of "shuffling" the queue
-   * Algo:
-   *   < YOUR SUCCINCT SUMMARY HERE >
-   **/
-  public void sample ()
-  {
-
+    return _list.peekFirst();
   }//O(?)
 
 
   public boolean isEmpty()
   {
-    return _front == null;
+    return (_list.size() == 0);
   } //O(?)
 
 
@@ -92,65 +60,18 @@ public class LLQueue<QUASAR> implements Queue<QUASAR>
   public String toString()
   {
     String retString = "";
-    int i = 1;
-    LLNode<QUASAR> current = _front;
-    while(i < _size) {
-      retString += current.getCargo();
-      current = current.getNext();
-      i++;
+    for(int i = 0; i < _list.size(); i++){
+      retString += _list.get(i) + " ";
     }
+    return retString;
   }//end toString()
-
-
-  public class LLNode<QUASAR>{
-    //instance vars
-    private QUASAR _cargo;
-    private LLNode _nextNode;
-
-    // constructor
-    public LLNode( QUASAR value, LLNode<QUASAR> next )
-    {
-          _cargo = value;
-          _nextNode = next;
-      }
-
-      //--------------v  ACCESSORS  v--------------
-      public QUASAR getCargo()
-      {
-          return _cargo;
-      }
-
-      public LLNode<QUASAR> getNext()
-      {
-          return _nextNode;
-      }
-      //--------------^  ACCESSORS  ^--------------
-
-
-      //--------------v  MUTATORS  v--------------
-      public QUASAR setCargo( QUASAR newCargo )
-      {
-          QUASAR foo = getCargo();
-          _cargo = newCargo;
-          return foo;
-      }
-
-      public LLNode<QUASAR> setNext( LLNode<QUASAR> newNext )
-      {
-          LLNode<QUASAR> foo = getNext();
-          _nextNode = newNext;
-          return foo;
-      }
-  }//end LLNode class
-
 
   //main method for testing
   public static void main( String[] args )
   {
 
-      /*v~~~~~~~~~~~~~~MAKE MORE~~~~~~~~~~~~~~v
-
-    Queue<String> PirateQueue = new RQueue<String>();
+    
+    Queue<String> PirateQueue = new LLQueue<String>();
     System.out.println("\nnow enqueuing...");
     PirateQueue.enqueue("Dread");
     PirateQueue.enqueue("Pirate");
@@ -168,10 +89,11 @@ public class LLQueue<QUASAR> implements Queue<QUASAR>
     System.out.println( PirateQueue.dequeue() );
     System.out.println( PirateQueue.dequeue() );
     System.out.println("\nnow dequeuing fr empty queue...\n" +
-                       "(expect NPE)\n");
+    "(expect NPE)\n");
     System.out.println( PirateQueue.dequeue() );
-      ^~~~~~~~~~~~~~~~AWESOME~~~~~~~~~~~~~~~^*/
-
+    /*v~~~~~~~~~~~~~~MAKE MORE~~~~~~~~~~~~~~v
+    ^~~~~~~~~~~~~~~~AWESOME~~~~~~~~~~~~~~~^*/
+    
   }//end main
 
 }//end class RQueue
