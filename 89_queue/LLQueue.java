@@ -33,7 +33,7 @@ public class LLQueue<QUASAR> implements Queue<QUASAR>
   public void enqueue( QUASAR enQVal )
   {
     _list.add(enQVal);
-  }//O(?)
+  }//O(1)
 
 
   // remove and return thing at front of queue
@@ -41,19 +41,19 @@ public class LLQueue<QUASAR> implements Queue<QUASAR>
   public QUASAR dequeue()
   {
     return _list.remove();
-  }//O(?)
+  }//O(1)
 
 
   public QUASAR peekFront()
   {
     return _list.peekFirst();
-  }//O(?)
+  }//O(1)
 
 
   public boolean isEmpty()
   {
     return (_list.size() == 0);
-  } //O(?)
+  } //O(1)
 
 
   // print each node, separated by spaces
