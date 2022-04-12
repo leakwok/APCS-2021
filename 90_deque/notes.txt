@@ -1,0 +1,14 @@
+/* Unicorn Unicodes: Eric, Lea, Kosta
+APCS
+HW90 -- Swabbing the Deque
+2022-04-12
+time spent: 00.8 hrs */
+
+DISCO:
+- An interface is useful to use as a checklist. 
+
+
+QCC:
+- Is a LinkedList the right data structure to use for a deque? 
+- What's the difference between a deque and a doubly-linked list? Don't they have the same functionality?
+
