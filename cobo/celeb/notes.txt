@@ -1,0 +1,19 @@
+/* Team Fried Chicken :: Nina Jiang, Lea Kwok, Lindsay Phung
+APCS
+LAB09 -- Some Folks Call It A Charades / celeb lab
+2022-04-27w
+time spent: 2.0 hrs */
+
+DISCO
+- Work with the mechanics of the terminal before implementing GUI (Graphical User
+  Interface).
+- While the GUI is not necessary, it is a nice visualizer.
+- (ACTIVITY 2) We made more than one constructor in the Celebrity class as we wanted
+  to be able to test the set methods.
+- (javax.swing.) The swing that is being referenced is a set of librarie. There is a relationship
+  between the program and the widgets within a machine. This would come in handy with GUIs (visual
+  representations).
+
+QCC
+- What is the difference between using a class and using an instance variable?
+- There are so many instance variables... how do we keep track of them?
