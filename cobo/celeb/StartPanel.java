@@ -25,7 +25,6 @@ import javax.swing.SpringLayout;
 public class StartPanel extends JPanel
 {
   private JRadioButton rb;
-  private String celeb;
 
   /**
    * Reference to the Game to call methods.
@@ -124,8 +123,8 @@ public class StartPanel extends JPanel
   public StartPanel(CelebrityGame controller)
   {
     super();
-    rb = new JRadioButton("Your Celebrity Type");
-    celeb = "Your celebrity type clue format hint";
+    rb = new JRadioButton("Entertainment Celebrity");
+    entertainmentClue = "Enter the clue for the entertainment celebrity";
     this.controller = controller;
     this.panelLayout = new SpringLayout();
     this.typeGroup = new ButtonGroup();
@@ -192,7 +191,11 @@ public class StartPanel extends JPanel
   private void setupPanel()
   {
     // Adds the RadioButtons to the group so only one can be selected.
+    this.add(celebrityRadio);
+    this.add(literatureRadio);
     this.add(rb);
+    typeGroup.add(celebrityRadio);
+    typeGroup.add(literatureRadio);
     typeGroup.add(rb);
   }
 
