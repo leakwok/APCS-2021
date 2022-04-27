@@ -13,7 +13,11 @@ DISCO
 - (javax.swing.) The swing that is being referenced is a set of librarie. There is a relationship
   between the program and the widgets within a machine. This would come in handy with GUIs (visual
   representations).
+- Reminder: read carefully to not miss any details.
+- The GUI doesn't pop up due to empty methods found. This is due to the untouched CelebrityFrame.
 
 QCC
 - What is the difference between using a class and using an instance variable?
 - There are so many instance variables... how do we keep track of them?
+- The setup methods in CelebrityFrame and StartPanel are empty. There are no instructions on how
+  to complete them. What should we do?

@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class CelebrityGame
 {
 	private ArrayList<Celebrity> celebGameList;
-	private String gameCelebrity;
+	private Celebrity gameCelebrity;
 	CelebrityFrame gameWindow;
 
 	/**
@@ -91,6 +91,7 @@ public class CelebrityGame
 	 */
 	public void addCelebrity(String name, String guess, String type)
 	{
+		Celebrity currentCelebrity;
 		if (type.equals("Literature")) {
 			currentCelebrity = new LiteratureCelebrity(name, guess);
 		} else {

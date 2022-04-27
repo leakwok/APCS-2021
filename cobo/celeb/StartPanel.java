@@ -100,6 +100,7 @@ public class StartPanel extends JPanel
   /**
    * String to populate the clueLabel if Class Generated Celebrity is picked.
    */
+  private String entertainmentClue;
 
 
   /**
@@ -122,9 +123,9 @@ public class StartPanel extends JPanel
    */
   public StartPanel(CelebrityGame controller)
   {
+    super();
     rb = new JRadioButton("Your Celebrity Type");
     celeb = "Your celebrity type clue format hint";
-    super();
     this.controller = controller;
     this.panelLayout = new SpringLayout();
     this.typeGroup = new ButtonGroup();
@@ -167,6 +168,9 @@ public class StartPanel extends JPanel
     if (literatureRadio.isSelected())
     {
       validClue = controller.validateClue(clueText, "Literature");
+    }
+    else if (rb.isSelected()) {
+      validClue = controller.validateClue(clueText, "Entertainment");
     }
     else
     {
@@ -257,9 +261,6 @@ public class StartPanel extends JPanel
         {
           addToGame();
         }
-        else if (rb.isSelected()) {
-          Celebrity.validateClue();
-        }
         else
         {
           invalidInput();
@@ -276,7 +277,7 @@ public class StartPanel extends JPanel
      */
     literatureRadio.addActionListener(select -> clueLabel.setText(literatureClue));
     celebrityRadio.addActionListener(select -> clueLabel.setText(celebrityClue));
-    rb.addActionListener(select -> clueLabel.setText(yourCelebrityClue));
+    rb.addActionListener(select -> clueLabel.setText(entertainmentClue));
   }
 
   private void invalidInput()
@@ -295,7 +296,7 @@ public class StartPanel extends JPanel
       type = "Literature";
     }
     else if (rb.isSelected()) {
-      CelebrityRunner();
+      type = "Entertainment";
     }
     String answer = answerField.getText().trim();
     String clue = clueField.getText().trim();
