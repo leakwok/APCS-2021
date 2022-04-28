@@ -77,6 +77,7 @@ public class CelebrityGame
 			this.gameCelebrity = celebGameList.get(0);
 			gameWindow.replaceScreen("GAME");
 		}
+
 	}
 
 	/**

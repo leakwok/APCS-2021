@@ -197,7 +197,12 @@ public class StartPanel extends JPanel
     typeGroup.add(celebrityRadio);
     typeGroup.add(literatureRadio);
     typeGroup.add(rb);
-  }
+    this.add(answerField);
+    this.add(clueField);
+    this.add(addCelebrityButton);
+    this.add(startButton);
+
+    }
 
   /**
    * Uses the Springlayout constraint system to place all GUI components on
