@@ -1,19 +1,19 @@
-Fried Chicken :: Nina Jiang, Lea Kwok, Lindsay Phung 
+Fried Chicken :: Nina Jiang, Lea Kwok, Lindsay Phung
 APCS pd7
 HW94 -- Reforestation/reverse engineering
 2022-05-06f
-time spent:  hrs
+time spent: 0.60 hrs
 
 
 DISCO
 ------------------------------------------------
-* 
+* There are lots of patterns to notice with traversals and how it reflects in trees.
 ================================================
 
 
 QCC
 ------------------------------------------------
-* 
+* Is there actually a definite number of trees given a traversal(s)?
 ================================================
 
 
@@ -29,29 +29,32 @@ Q: For a given binary tree, how many unique post-order traversals are there?
 A: 1 unique traversal
 
 Q: For a given traversal, how many unique trees could have produced it?
-A: 
+A: For pre-order traversals, if there are N characters in the traversal, there are N possible unique trees. 
 
 Q: Given a pre-order traversal, what can you infer about its tree?
-A: 
+A: The leftmost element is the root.
 
 Q: Given a post-order traversal, what can you infer about its tree?
-A: 
+A: The rightmost element is the root.
 
 Q: What does "1-to-1" mean?
-A: 
+A: "1-to-1" means each distinct input produces a distinct output.
 
 Q: What does "onto" mean?
-A: 
+A: We are not sure... but it usually means placing something on top of something else
 
 ================================================
 
 
-ALGO for ____
+ALGO for recreating a tree 
 ------------------------------------------------
 givens:
+* pre-order traversal
 
 procedure:
-
+* Take the first element and make it the root of the tree
+* Split the rest of the elements in half 
+* The first half will represent the left side of the tree and the second half will represent the right side of the tree
+* Reading from left to right, begin at the root and create edges to connect the next element in the traversal (swap sides when applicable)
 ================================================
 (replicate the algo section above as many times as necessary for distinct algos)
-
