@@ -1,0 +1,17 @@
+Fried Chicken :: Nina Jiang, Lea Kwok, Lindsay Phung
+APCS pd7
+HW96 -- BSTs is the Perfect Place for Shade / adding the methods for searching,
+        height, and leaves
+2022-05-11w
+time spent: 1 hrs
+
+DISCO
+* When considering measuring height, we can ask the parent to ask its child how
+  high up the tree it is and then add 1.
+* It is not necessary for the child to know its parent.
+* Counters... "think recursively."
+* We must print the new methods in the main method. Additionally, we have to
+  get the value of search since the method returns type TreeNode.
+
+QCC
+* Is there a way to write the methods without the inclusion of helpers?
