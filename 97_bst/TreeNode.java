@@ -1,9 +1,8 @@
 /*
 Fried Chicken :: Nina Jiang, Lea Kwok, Lindsay Phung
 APCS pd7
-HW96 -- BSTs is the Perfect Place for Shade / adding the methods for searching,
-        height, and leaves
-2022-05-11w
+HW97 -- Prune Your Tree / adding remove method
+2022-05-12r
 time spent: 1 hrs
 */
 

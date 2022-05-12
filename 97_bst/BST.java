@@ -1,15 +1,14 @@
 /*
 Fried Chicken :: Nina Jiang, Lea Kwok, Lindsay Phung
 APCS pd7
-HW96 -- BSTs is the Perfect Place for Shade / adding the methods for searching,
-        height, and leaves
-2022-05-11w
+HW97 -- Prune Your Tree / adding remove method
+2022-05-12r
 time spent: 1 hrs
 */
 
 /**
  * class BST
- * v1:partial
+ * v2:partial
  * SKELETON
  * Implementation of the BINARY SEARCH TREE abstract data type (ADT)
  *
@@ -73,11 +72,8 @@ public class BST
   }//end insert()
 
 
-
-
   //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   //~~~~~~~~~~~~~v~~TRAVERSALS~~v~~~~~~~~~~~~~~~~~~~~~
-
   // each traversal should simply print to standard out
   // the nodes visited, in order
 
@@ -89,7 +85,7 @@ public class BST
   public void preOrderTrav( TreeNode currNode )
   {
     if ( currNode == null )
-	    return;
+      return;
     System.out.print( currNode.getValue() + " " );
     preOrderTrav( currNode.getLeft() );
     preOrderTrav( currNode.getRight() );
@@ -123,152 +119,248 @@ public class BST
     System.out.print( currNode.getValue() + " "  );
   }
 
+  public String inOrderTravStr( TreeNode currNode ) {
+    String retStr = "";
+    if ( currNode == null )
+      return retStr;
+    retStr += inOrderTravStr( currNode.getLeft() );
+    retStr += " " + currNode.getValue();
+    retStr += inOrderTravStr( currNode.getRight() );
+    return retStr;
+  }
+  public String preOrderTravStr( TreeNode currNode ) {
+    String retStr = "";
+    if ( currNode == null )
+      return retStr;
+    retStr += " " + currNode.getValue();
+    retStr += preOrderTravStr( currNode.getLeft() );
+    retStr += preOrderTravStr( currNode.getRight() );
+    return retStr;
+  }
+  public String postOrderTravStr( TreeNode currNode ) {
+    String retStr = "";
+    if ( currNode == null )
+      return retStr;
+    retStr += postOrderTravStr( currNode.getLeft() );
+    retStr += postOrderTravStr( currNode.getRight() );
+    retStr += " " + currNode.getValue();
+    return retStr;
+  }
+
   //~~~~~~~~~~~~~^~~TRAVERSALS~~^~~~~~~~~~~~~~~~~~~~~~
   //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
-  /*****************************************************
-  * TreeNode search(int)
-  * returns pointer to node containing target,
-  * or null if target not found
-  *****************************************************/
+  //~~~~~~~~~~~~~v~~MISC.HELPERS~~v~~~~~~~~~~~~~~~~~~~
+  public boolean isLeaf( TreeNode node )
+  {
+    return ( node.getLeft() == null
+             &&
+             node.getRight() == null );
+  }
+  //~~~~~~~~~~~~~^~~MISC.HELPERS~~^~~~~~~~~~~~~~~~~~~~
 
+
+  //overridden toString
+  public String toString()
+  {
+    return
+      " pre-order trav:" + preOrderTravStr( _root ) + '\n' +
+      "  in-order trav:" + inOrderTravStr( _root ) + '\n' +
+      "post-order trav:" + postOrderTravStr( _root ) + '\n' +
+      "         height: " + height() + '\n' +
+      "     num leaves: " + numLeaves()
+      ;
+  }
+
+  /* public String toString(){
+      LinkedList<TreeNode> q = new LinkedList<TreeNode>();
+      q.add(_root);
+      return toString(q,1,this.height());
+  }
+  */
+
+
+  /**
+   * TreeNode search(int)
+   * returns pointer to node containing target,
+   * or null if target not found
+   */
   TreeNode search( int target )
   {
-    return search(_root, target);
+    return search( target, _root );
   }
-
-  TreeNode search(TreeNode root, int target) {
-    if (root == null) {
-      return null;
-    }
-    else if (root.getValue() == target) {
-      return root;
-    } //start comparing to target
-    else if (root.getValue() < target) { //if smaller, go right
-      if (root.getRight() != null) {
-        return search(root.getRight(), target);
-      }
-    }
-    else if (root.getValue() > target) {
-      if (root.getLeft() != null) {
-        return search(root.getLeft(), target);
-      }
-    }
-    return root; //when target isn't found
-  }
-
-
-  /*****************************************************
-  * int height()
-  * returns height of this tree (length of longest leaf-to-root path)
-  * eg: a 1-node tree has height 1
-  *****************************************************/
-  public int height() {
-    return height(_root);
-  }
-
-  public int height(TreeNode root)
+  TreeNode search( int target, TreeNode currNode )
   {
-    if (root == null) {
-      return 0;
-    } else {
-      if (_root.getLeft() != null) {
-        return height(root.getLeft()) + 1;
-      } else {
-        return height(root.getRight()) + 1;
-      }
-    }
-    //we checked for no nodes and our else if loop is meant for nodes > 1
+    if ( currNode==null || currNode.getValue()==target )
+      return currNode;
+    else if ( target < currNode.getValue() )
+      return search( target, currNode.getLeft() );
+    else if ( target > currNode.getValue() )
+      return search( target, currNode.getRight() );
+    else
+      return null; //to get past compiler
   }
 
 
-  /*****************************************************
-  * int numLeaves()
-  * returns number of leaves in tree
-  *****************************************************/
-  public int numLeaves() {
-    return numLeaves(_root);
-  }
-
-  public int numLeaves(TreeNode root)
+  /**
+   * int height()
+   * returns height of this tree (length of longest leaf-to-root path)
+   * eg: a 1-node tree has height 0
+   */
+  public int height()
   {
-    if (root == null) {
+    return height( _root );
+  }
+  //recursive helper for height()
+  public int height( TreeNode currNode )
+  {
+    if ( currNode==null ) //Q: Why cannot use .equals() ?
       return 0;
-    } else if (root.getLeft() == null && root.getRight() == null) {
-      return 1;
-    } else {
-      return numLeaves(root.getLeft()) + numLeaves(root.getRight());
+    if ( isLeaf(currNode) )
+      return 0;
+    else //height is 1 for this node + height of deepest subtree
+      return 1 + Math.max( height(currNode.getLeft()),
+                           height(currNode.getRight()) );
+  }
+
+
+  /**
+   * int numLeaves()
+   * returns number of leaves in tree
+   */
+  public int numLeaves()
+  {
+    return numLeaves( _root );
+  }
+  public int numLeaves( TreeNode currNode ) {
+    int foo = 0;
+    if ( currNode == null )
+      return 0;
+    foo += numLeaves( currNode.getLeft() );
+    if ( isLeaf(currNode) )
+      foo++;
+    foo += numLeaves( currNode.getRight() );
+    return foo;
+  }
+
+
+  /**
+  * ALGO:
+    * Find the node to remove
+    * If it has no children, make the parent node pointer to the removed null
+    * If one child, make the parent node pointer to the removed the child of the
+      removed
+    * If two children, traverse the left subtree of the removed to find the rightmost
+      element and make that the parent node pointer to the removed
+  */
+  public TreeNode remove(int target){
+    //if root has no children
+    if (_root.getLeft() == null && _root.getRight() == null) {
+      System.out.println("No tree.");
     }
+    //if root only has children to its left
+    else if (_root.getRight() == null) {
+      TreeNode node = _root.getLeft();
+      while (node.getRight() != null) {
+        node = _root.getRight();
+      }
+      return remove(node.getValue());
+    }
+    //if root only has children to its right
+    else if (_root.getLeft() == null) {
+      TreeNode node = _root.getRight();
+      while (node.getLeft() != null) {
+        node = _root.getLeft();
+      }
+      return remove(node.getValue());
+    }
+    //if root has two children
+    else if (_root.getValue() < target) {
+      TreeNode node = _root.getRight();
+      while (node.getLeft() != null) {
+        node = _root.getLeft();
+      }
+      return remove(node.getValue());
+    } else {
+      TreeNode node = _root.getLeft();
+      while (node.getRight() != null) {
+        node = _root.getRight();
+      }
+      return remove(node.getValue());
+    }
+    return null;
   }
 
 
   //main method for testing
-  public static void main( String[] args )
-  {
-    BST arbol = new BST();
+    public static void main( String[] args ) {
 
-    //PROTIP: sketch state of tree after each insertion
-    //        ...BEFORE executing these.
-    arbol.insert( 4 );
-    arbol.insert( 2 );
-    arbol.insert( 5 );
-    arbol.insert( 6 );
-    arbol.insert( 1 );
-    arbol.insert( 3 );
+	BST arbol = new BST();
 
-    System.out.println( "\n-----------------------------");
-    System.out.println( "pre-order traversal:" );
-    arbol.preOrderTrav();
+	System.out.println( "tree init'd: " + arbol );
 
-    System.out.println( "\n-----------------------------");
-    System.out.println( "in-order traversal:" );
-    arbol.inOrderTrav();
+	//inserting in this order will build a perfect tree
+	arbol.insert( 3 );
+	arbol.insert( 1 );
+	arbol.insert( 0 );
+	arbol.insert( 2 );
+	arbol.insert( 5 );
+	arbol.insert( 4 );
+	arbol.insert( 6 );
+	/*
+	*/
 
-    System.out.println( "\n-----------------------------");
-    System.out.println( "post-order traversal:" );
-    arbol.postOrderTrav();
+	//insering in this order will build a linked list to left
+	/*
+	arbol.insert( 6 );
+	arbol.insert( 5 );
+	arbol.insert( 3 );
+	arbol.insert( 4 );
+	arbol.insert( 2 );
+	arbol.insert( 1 );
+	arbol.insert( 0 );
+	*/
 
-    System.out.println( "\n-----------------------------");
-    System.out.println("searching for 2: ");
-    System.out.println(arbol.search(2).getValue());
+	System.out.println( "tree after insertions:\n" + arbol );
+	System.out.println();
 
-    System.out.println( "\n-----------------------------");
-    System.out.println("height: ");
-    System.out.println(arbol.height());
+	System.out.println();
+	for( int i=-1; i<8; i++ ) {
+	    System.out.println(" searching for "+i+": " + arbol.search(i) );
+	}
 
-    System.out.println( "\n-----------------------------");
-    System.out.println("number of leaves: ");
-    System.out.println(arbol.numLeaves());
+	System.out.println();
+	System.out.println( arbol );
 
-    System.out.println( "\n-----------------------------");
-    /*~~~~~~~~~~~~move~me~down~~~~~~~~~~~~~~~~~~~~~~
-      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+	arbol.remove(6);
+	System.out.println();
+	System.out.println( arbol );
 
+	arbol.remove(5);
+	System.out.println();
+	System.out.println( arbol );
 
+	arbol.remove(4);
+	System.out.println();
+	System.out.println( arbol );
 
-    /**
-       EXPECTED OUTPUT:
-       -----------------------------
-       pre-order traversal:
-       4 2 1 3 5 6
-       -----------------------------
-       in-order traversal:
-       1 2 3 4 5 6
-       -----------------------------
-       post-order traversal:
-       1 3 2 6 5 4
-       -----------------------------
-       searching for 2:
-       2
-       -----------------------------
-       height:
-       3
-       -----------------------------
-       number of leaves:
-       3
-       -----------------------------
-    */
+	arbol.remove(3);
+	System.out.println();
+	System.out.println( arbol );
+
+	arbol.remove(2);
+	System.out.println();
+	System.out.println( arbol );
+
+	arbol.remove(1);
+	System.out.println();
+	System.out.println( arbol );
+
+	arbol.remove(0);
+	System.out.println();
+	System.out.println( arbol );
+
   }
 
 }//end class
