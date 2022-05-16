@@ -1,0 +1,13 @@
+Fried Chicken :: Nina Jiang, Lea Kwok, Lindsay Phung
+APCS pd7
+HW99 -- Some Are More Equal Than Others, Codified / prioritized queue
+2022-05-16m
+time spent: 0.5 hrs
+
+DISCO
+* We wrote the add method with the intention of ordering the numbers in priority,
+  such that for our peekMin() and removeMin(), it would just be getting and
+  removing the first element in the queue.
+
+COMMENT
+* tarik watch party until June 27 :)
