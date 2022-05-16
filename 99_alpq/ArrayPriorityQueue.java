@@ -38,44 +38,38 @@ public class ArrayPriorityQueue implements PriorityQueue
     * We first scheck for an empty queue: if so, add. We then check to the queue
     * for a bigger number. If so, add at the index + 1. If not, add to the zeroth
     * index.
-    * O(1)
+    * O(n)
     */
     public void add( int x ){
+      if (isEmpty()) {
         _queue.add(x);
+        return;
+      }
+      for (int i = 0; i < _queue.size(); i++) {
+        if (x > _queue.get(i)) {
+          _queue.add(i + 1, x);
+          return;
+        }
+      }
+      _queue.add(0, x);
     }
 
     /**
     * int peekMin()
     * Returns the smallest item stored in this priority queue without removing it.
-    * O(n)
+    * O(1)
     */
     public int peekMin(){
-      int smallest = _queue.get(0);
-      for(Integer i : _queue){
-        if(i < smallest){
-          smallest = i;
-        }
-      }
-
-      return smallest;
+      return _queue.get(0);
     }
 
     /**
     * int removeMin()
     * Removes and returns the smallest item stored in this priority queue.
-    * O(n)
+    * O(1)
     */
     public int removeMin(){
-      int removed = _queue.get(0);
-      int index = 0;
-      for(int i = 0; i < _queue.size(); i++){
-        if(removed > _queue.get(i)){
-          removed = _queue.get(i);
-          index = i;
-        }
-      }
-
-      return _queue.remove(index);
+      return _queue.remove(0);
     }
 
     public static void main(String[] args){
