@@ -1,0 +1,13 @@
+Fried Chicken :: Nina Jiang, Lea Kwok, Lindsay Phung
+APCS pd7
+HW101 -- Heap o'Trouble / intro to heap... algo for adding and removing methods
+         for minheap
+2022-05-17t
+time spent: 1 hrs
+
+DISCO
+* Same possibilities: no children, 1 child, and 2 children.
+* Easier to create algos when thinking about all cases before writing.
+
+QCC
+* Does the left subtree have to greater or less than the right subtree at all times?

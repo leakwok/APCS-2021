@@ -1,0 +1,32 @@
+Fried Chicken :: Nina Jiang, Lea Kwok, Lindsay Phung
+APCS pd7
+HW101 -- Heap o'Trouble / intro to heap... algo for adding and removing methods
+         for minheap
+2022-05-17t
+time spent: 1 hrs
+
+* newNode = node inserted
+
+1. Start at the root, comparing the value of the newNode to the value of the root.
+
+--------- CASE 1: NO CHILDREN ---------------------------------------------------
+2. If the root has no children, then we insert newNode as the left child of the
+   root.
+
+--------- CASE 2: ONE CHILD ---------------------------------------------------
+3. If newNode's value is greater than the root's value, we compare newNode to the
+   (if exists) child of the root.
+   - If newNode's value is smaller, then we make newNode the left child and call
+     insertion() for the nodes that have been "cut off" (if the child was on the left).
+   - If newNode's value is bigger than the left child, we add newNode to the right.
+
+--------- CASE 3: TWO CHILDREN ---------------------------------------------------
+4. If newNode's value is bigger than the left child's value, we look at the right
+   child of the root. If newNode's value is bigger than the right child, we go
+   down each level comparing a node's value with newNode's value until we reach a
+   node that has a bigger value than newNode. If so, insert here.
+   - If newNode is smaller than the left child, then insert at the left of the root
+     and call insert on the original left child.
+   - If newNode is greater than the left child but smaller than the right child, then
+     keep comparing it to nodes along the left subtree of the root to find a node that is
+     just smaller than it and add it there.

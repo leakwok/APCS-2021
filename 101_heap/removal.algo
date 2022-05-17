@@ -1,0 +1,16 @@
+Fried Chicken :: Nina Jiang, Lea Kwok, Lindsay Phung
+APCS pd7
+HW101 -- Heap o'Trouble / intro to heap... algo for adding and removing methods
+         for minheap
+2022-05-17t
+time spent: 1 hrs
+
+1. Because this is a leaf, the its left and right subtrees will be null. Thus you
+   can directly set the parent pointer to this leaf to null.
+--------- CASE 1: REMOVING A CHILD -----------------------------------------------
+1. Check the number of children the parent node has.
+2. If there is one child to the right or left of the node, set the node's parent's
+   pointer to the child of the node.
+3. If there are two children, compare the two leaves/children and set the node's
+  parent's pointer to the smaller of the two.
+--------- CASE 2: REMOVING A PARENT/ROOT -----------------------------------------
