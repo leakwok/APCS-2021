@@ -1,0 +1,27 @@
+Fried Chicken :: Nina Jiang, Lea Kwok, Lindsay Phung
+APCS pd7
+HW103 -- Erica's Friends, Hugo, and The One in the Middle / find minimum using
+         minheap and maxheap
+2022-05-19r
+time spent: 1.5 hrs
+
+DISCO:
+* Each element in the minheap should be greater than the median. Each element in
+  the maxheap should be less than the median.
+* Be very careful with capitalization!
+* To run the Driver with input.nums use java RunMedDriver < input.nums
+
+QCC:
+* 
+
+ALGO
+1. Initialize a minheap and maxheap.
+2. Add the first element in the maxheap.
+3. If the next element is smaller than the root of maxheap (the first element),
+   the new element is added to minheap.
+4. We do (3) with consideration that minheap and maxheap don't have a size difference
+   of more than 1. If so, we remove the element from the larger heap and put it
+  in the smaller heap.
+5. After all elements are added, if the two heaps have equal sizes, then the
+   medium is the mean of the roots of minheap and maxheap. If the two heaps have
+   different sizes, then the median is the root of the larger heap.
