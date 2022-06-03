@@ -3,17 +3,20 @@
  * Simulates a rudimentary Scheme interpreter
  *
  * ALGORITHM for EVALUATING A SCHEME EXPRESSION:
- *   1. Steal underpants.
- *   2. ...
- *   5. Profit!
+ *   1. Begin at right end of input expression
+ *   2. Start pushing close parens, numbers, ops onto stack
+ *      ...until you reach an open paren
+ *   3. Perform operation on stacked numbers, popping off 1 at at time
+ *      ...until encounter a close paren
+ *   4. Push result of calculations onto stack without parens
+ *   5. Repeat steps 2-5 until entire input expression has been traversed
  *
- * STACK OF CHOICE: ____ by ____
- * b/c ...
+ * STACK OF CHOICE: LLStack by Clyde "Thluffy" Sinclair
+ * b/c that Thluffy likes nodes
  **/
 
 public class Scheme
 {
-
   /***
    * precond:  Assumes expr is a valid Scheme (prefix) expression,
    *           with whitespace separating all operators, parens, and 
@@ -25,124 +28,76 @@ public class Scheme
    **/
   public static String evaluate( String expr )
   {
-    //make new stack
-    LLStack<String> stack = new LLStack<String>();
+    String retVal = "";
+    String[] exprArr = expr.split("\\s+"); //split on whitespace
 
-    //make operation int
-    int oper = 0;
+    Stack<String> flapjacks;
+    flapjacks = new LLStack<String>();
+    //flapjacks = new ALStack<String>();
 
-    //make return str
-    String finalAns = "";
-
-    //split each character up and put in array
-    String[] holderArr = expr.split("");
-
-    //add each character to stack
-    for(String s : holderArr){
-
-        stack.push(s);
-
-        //if operation is found, set operation int
-        if(stack.peekTop().equals("+")){
-          oper = 1;
+    //traverse input expression from R to L
+    for( int i = exprArr.length - 1; i > -1; i-- ) {
+      if ( exprArr[i].equals("(") ) {
+        String op = flapjacks.pop();
+        if ( op.equals("+") ) {
+          flapjacks.push( unload(1,flapjacks) );
         }
-        if(stack.peekTop().equals("-")) {
-          oper = 2;
+        else if ( op.equals("-") ) {
+          flapjacks.push( unload(2,flapjacks) );
         }
-        if(stack.peekTop().equals("*")){
-          oper = 3;
+        else if ( op.equals("*") ) {
+          flapjacks.push( unload(3,flapjacks) );
         }
-
-        //search for )
-        if(stack.peekTop().equals(")")){
-          //pop )
-          stack.pop();
-
-          //pop \\s
-          stack.pop();
-
-          //unload 
-          finalAns = unload(oper, stack);
-
-          //add value back
-          stack.push(finalAns);
-        }
-
-    }//end foreach
-
-
-    return finalAns;
+      }
+      //push numbers, ops, )'s onto stack
+      else {
+        flapjacks.push( exprArr[i] );
+      }
+    }
+    retVal = flapjacks.pop();
+    return retVal;
   }//end evaluate()
 
 
   /***
    * precond:  Assumes top of input stack is a number.
-   * postcond: Performs op on nums until closing paren is seen thru peek().
+   * postcond: Performs op on nums until closing paren is seen thru peekTop().
    *           Returns the result of operating on sequence of operands.
    *           Ops: + is 1, - is 2, * is 3
    **/
-  public static String unload( int op, LLStack<String> numbers )
+  public static String unload( int op, Stack<String> numbers )
   {
-    //make temp holder string
-    String temp = "";
+    int retVal = Integer.parseInt( numbers.pop() );
 
-    //make return int
-    int answer = 0;
-
-
-    //pop all until reach operator
-    while(!(numbers.peekTop().equals("+")) || !(numbers.peekTop().equals("-")) || !(numbers.peekTop().equals("*"))){
-      //add each to temp str
-      temp += numbers.pop();
-    }
-    
-
-    //split string with regex
-    String[] tempHold = temp.split("\\s");
-
-    //perform operation
-    if(op == 1){
-      //addition
-      for(String s : tempHold){
-        answer += Integer.parseInt(s);
+    while( !( numbers.peekTop().equals(")") ) ) {
+      int nextVal = Integer.parseInt( numbers.pop() );
+      if ( op == 1 ) {
+        retVal = retVal + nextVal;
       }
-
-    } else if(op == 2){
-      //subtraction
-      answer = Integer.parseInt(tempHold[tempHold.length-1]);
-      for(int i = tempHold.length-2; i <= 0; i--){
-        answer -= Integer.parseInt(tempHold[i]);
+      else if ( op == 2 ) {
+        retVal = retVal - nextVal;
       }
-
-    } else if(op == 3){
-      //multiplication
-      answer = Integer.parseInt(tempHold[0]);
-      for(int i = 1; i < tempHold.length; i++){
-        answer *= Integer.parseInt(tempHold[i]);
+      else if ( op == 3 ) {
+        retVal = retVal * nextVal;
       }
     }
-
-    //pop operator, \\s, (
-    for(int i = 0; i < 3; i++){
+    if( numbers.peekTop().equals(")") ) {
       numbers.pop();
     }
-    
-
-    return String.valueOf(answer);
-
+    return retVal + "";
   }//end unload()
 
 
-  /*
   //optional check-to-see-if-its-a-number helper fxn:
+  /*
   public static boolean isNumber( String s ) {
-  try {
-  Integer.parseInt(s);
-  return true;
-  }
-  catch( NumberFormatException e ) {
-  return false;
-  }
+    try {
+      Integer.parseInt(s);
+      return true;
+    }
+    catch( NumberFormatException e ) {
+      return false;
+    }
   }
   */
 
@@ -150,27 +105,26 @@ public class Scheme
   //main method for testing
   public static void main( String[] args )
   {
-
     String zoo1 = "( + 4 3 )";
     System.out.println(zoo1);
     System.out.println("zoo1 eval'd: " + evaluate(zoo1) );
+    //...7
+
+    String zoo2 = "( + 4 ( * 2 5 ) 3 )";
+    System.out.println(zoo2);
+    System.out.println("zoo2 eval'd: " + evaluate(zoo2) );
+    //...17
+
+    String zoo3 = "( + 4 ( * 2 5 ) 6 3 ( - 56 50 ) )";
+    System.out.println(zoo3);
+    System.out.println("zoo3 eval'd: " + evaluate(zoo3) );
+    //...29
+
+    String zoo4 = "( - 1 2 3 )";
+    System.out.println(zoo4);
+    System.out.println("zoo4 eval'd: " + evaluate(zoo4) );
+    //...-4
     /*v~~~~~~~~~~~~~~MAKE MORE~~~~~~~~~~~~~~v
-      //...7
-
-      String zoo2 = "( + 4 ( * 2 5 ) 3 )";
-      System.out.println(zoo2);
-      System.out.println("zoo2 eval'd: " + evaluate(zoo2) );
-      //...17
-
-      String zoo3 = "( + 4 ( * 2 5 ) 6 3 ( - 56 50 ) )";
-      System.out.println(zoo3);
-      System.out.println("zoo3 eval'd: " + evaluate(zoo3) );
-      //...29
-
-      String zoo4 = "( - 1 2 3 )";
-      System.out.println(zoo4);
-      System.out.println("zoo4 eval'd: " + evaluate(zoo4) );
-      //...-4
       ^~~~~~~~~~~~~~~~AWESOME~~~~~~~~~~~~~~~^*/
   }//main()
 

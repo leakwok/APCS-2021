@@ -232,6 +232,8 @@ public class BST
     System.out.println( "\n-----------------------------");
     System.out.println("searching for 2: ");
     System.out.println(arbol.search(2).getValue());
+    System.out.println(arbol.search(4).getValue());
+    System.out.println(arbol.search(1).getValue());
 
     System.out.println( "\n-----------------------------");
     System.out.println("height: ");
